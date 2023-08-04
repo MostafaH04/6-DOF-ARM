@@ -1,6 +1,6 @@
 #include "motor.hpp"
 
-StepperMotor::StepperMotor(int step_pin, int dir_pin, int pwm_channel, MICROSTEPS microsteps):
+StepperMotor::StepperMotor(int step_pin, int dir_pin, MICROSTEPS microsteps):
   step(step_pin), dir(dir_pin)
 {
   revoluteSteps = REVOLUTE_STEPS * microsteps;
@@ -9,8 +9,7 @@ StepperMotor::StepperMotor(int step_pin, int dir_pin, int pwm_channel, MICROSTEP
   currentAngle = 0;
 
   stepAngle = 1.0 / (double)revoluteSteps;
-  
-  pwmChannel = pwm_channel;
+
   pwmFrequency = 20000; // default to 20kHz
   pwmDutyCycle = 50;    // default to 50% duty cycle
 
@@ -76,19 +75,13 @@ void StepperMotor::run(void)
   delayMicroseconds(delayTime);
 }
 
-void StepperMotor::initPWM() {
-  ledcSetup(pwmChannel, pwmFrequency, 8); // 8-bit resolution (0-255)
-  ledcAttachPin(step, pwmChannel);
-  ledcWrite(pwmChannel, 128); // 50% duty cycle initially
-}
-
 void StepperMotor::setPWMDutyCycle(int dutyCycle) {
   pwmDutyCycle = constrain(dutyCycle, 0, 100);
   int pwmValue = map(pwmDutyCycle, 0, 100, 0, 255);
-  ledcWrite(pwmChannel, pwmValue);
+  ledcWrite(step, pwmValue);
 }
 
 void StepperMotor::setPWMFrequency(int frequency) {
   pwmFrequency = frequency;
-  ledcSetup(pwmChannel, pwmFrequency, 8); // 8-bit resolution (0-255)
+  ledcSetup(step, pwmFrequency, 8); // 8-bit resolution (0-255)
 }

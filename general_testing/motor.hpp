@@ -56,7 +56,7 @@ class StepperMotor
     void initPWM(void);
 
   public:
-    StepperMotor(int step_pin, int dir_pin, int pwm_channel, MICROSTEPS microsteps);
+    StepperMotor(int step_pin, int dir_pin, MICROSTEPS microsteps);
 
     void init(void);
     float getAngle(void) const;
