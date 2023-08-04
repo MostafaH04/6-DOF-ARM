@@ -4,11 +4,11 @@
 
 // enable pin 
 #define ENABLE_PIN 12
+#define PWM_CHANNEL 0 // do we need diff pwm channels for diff motors?
 
 // motor 1
 #define STEP_1 11
 #define DIR_1 10
-#define PWM_CHANNEL_1 0
 
 // motor 2
 #define STEP_2 9
