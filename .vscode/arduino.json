@@ -1,5 +1,6 @@
 {
     "board": "arduino:avr:uno",
     "programmer": "avrispmkii",
-    "sketch": "test_stepper\\test_stepper.ino"
+    "sketch": "test_stepper\\test_stepper.ino",
+    "port": "COM3"
 }
