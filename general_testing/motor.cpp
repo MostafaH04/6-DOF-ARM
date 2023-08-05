@@ -68,7 +68,7 @@ void StepperMotor::run(void)
   currentSpeed = targetSpeed;
   stepMotor();
 
-  setPWMDutyCycle(abs(targetSpeed) * 50); // 50% of target speed
+  setPWMDutyCycle(50); // 50% duty cycle
   
   double freq_hz = (currentSpeed / stepAngle);
   double time_s = 1 / (freq_hz);
