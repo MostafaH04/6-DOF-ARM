@@ -68,9 +68,11 @@ void StepperMotor::run(void)
   currentSpeed = targetSpeed;
   stepMotor();
 
-  setPWMDutyCycle(50); // 50% duty cycle
+  setPWMDutyCycle(50);
   
   double freq_hz = (currentSpeed / stepAngle);
+  setPWMFrequency(freq_hz); 
+
   double time_s = 1 / (freq_hz);
   uint32_t delayTime = (time_s*1000000);
   delayMicroseconds(delayTime);
