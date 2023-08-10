@@ -1,5 +1,5 @@
 #include "motor.hpp"
-#include <driver/ledc.h>
+#include <TimerOne.h>
 
 StepperMotor::StepperMotor(int step_pin, int dir_pin, MICROSTEPS microsteps):
   step(step_pin), dir(dir_pin)
@@ -81,11 +81,12 @@ void StepperMotor::run(void)
 
 void StepperMotor::setPWMDutyCycle(int dutyCycle) {
   pwmDutyCycle = constrain(dutyCycle, 0, 100);
-  int pwmValue = map(pwmDutyCycle, 0, 100, 0, 255);
-  ledcWrite(step, pwmValue);
+  int pwmValue = map(pwmDutyCycle, 0, 100, 0, 1023);
+  Timer1.pwm(stepPin, pwmValue);
 }
 
 void StepperMotor::setPWMFrequency(int frequency) {
   pwmFrequency = frequency;
-  ledcSetup(step, pwmFrequency, 8); // 8-bit resolution (0-255)
+  unsigned long period = 1000000 / pwmFrequency;
+  Timer1.initialize(period);
 }
