@@ -1,4 +1,5 @@
 #include "motor.hpp"
+#include <driver/ledc.h>
 
 StepperMotor::StepperMotor(int step_pin, int dir_pin, MICROSTEPS microsteps):
   step(step_pin), dir(dir_pin)
