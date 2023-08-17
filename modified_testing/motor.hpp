@@ -79,8 +79,11 @@ class MotorHeap
   private:
     HeapNode *heap[7];
     int size;
-    void heapify(int i);
-    void swap(int i, int j);
+    int parent(int in);
+    int child(int in, bool right);
+    void heapUp(int in);
+    void heapDown(int in);
+    void swap(int in_1, int in_2);
 
   public:
     MotorHeap();
@@ -89,7 +92,7 @@ class MotorHeap
     bool isEmpty(void) const;
     void print(void) const; 
 
-    void dequeue(void);
+    HeapNode *dequeue(void);
     void enqueue(HeapNode *node);
 };
 

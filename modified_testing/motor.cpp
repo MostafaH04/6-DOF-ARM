@@ -96,7 +96,7 @@ void StepperMotor::runHeap(void)
 }
 
 MotorHeap::MotorHeap():
-  size(0)
+  size(1)
 {}
 
 int MotorHeap::getSize()
@@ -109,9 +109,82 @@ bool MotorHeap::isEmpty()
   return size == 0;
 }
 
+bool MotorHeap::isFull()
+{
+  return size == 7;
+}
+
 void MotorHeap::print()
 {
   for (int i = 0; i < size; i++)
     Serial.print(heap[i]->count);
   Serial.println();
 }
+
+int MotorHeap::parent(int in)
+{
+  return in/2;
+}
+
+int MotorHeap::child(int in, bool right)
+{
+  return in * 2 + right?1:0;
+}
+
+void MotorHeap::swap(int in_1, int in_2)
+{
+  HeapNode *temp = heap[in_1];
+  heap[in_1] = heap[in_2];
+  heap[in_2] = temp;
+}
+
+void MotorHeap::heapUp(int in)
+{
+  if (in >= size || heap[parent(in)]->count < heap[in]->count)
+  {
+    return;
+  }
+  swap(in, parent(in));
+  heapUp(parent(in));
+}
+
+void MotorHeap::heapDown(int in)
+{
+  int childPos = child(in,false);
+  if (childPos >= size)
+    return;
+  
+  int rightChild = child(in, true);
+  if (rightChild < size && 
+    heap[rightChild]->count < heap[childPos]->count)
+  {
+    childPos = rightChild
+  }
+  swap(childPos, in);
+  heapDown(childPos);
+}
+
+HeapNode *MotorHeap::dequeue(void)
+{
+  // take from top replace with last child;
+  if (!isEmpty())
+  {  
+    size --;
+    HeapNode *out = heap[1];
+    heap[1] = heap[size];
+    heapDown();
+    return out;
+  }
+}
+
+void enqueue(HeapNode *node)
+{
+  if (!isFull())
+  {
+    heap[size] = node;
+    size++;
+    heapUp(size-1);  
+  }
+}
+
+
