@@ -99,34 +99,34 @@ MotorHeap::MotorHeap():
   size(1)
 {}
 
-int MotorHeap::getSize()
+int MotorHeap::getSize() const
 {
   return size;
 }
 
-bool MotorHeap::isEmpty()
+bool MotorHeap::isEmpty() const
 {
   return size == 0;
 }
 
-bool MotorHeap::isFull()
+bool MotorHeap::isFull() const
 {
   return size == 7;
 }
 
-void MotorHeap::print()
+void MotorHeap::print() const
 {
   for (int i = 0; i < size; i++)
     Serial.print(heap[i]->count);
   Serial.println();
 }
 
-int MotorHeap::parent(int in)
+int MotorHeap::parent(int in) const
 {
   return in/2;
 }
 
-int MotorHeap::child(int in, bool right)
+int MotorHeap::child(int in, bool right) const
 {
   return in * 2 + right?1:0;
 }
@@ -177,7 +177,7 @@ HeapNode *MotorHeap::dequeue(void)
   }
 }
 
-void enqueue(HeapNode *node)
+void MotorHeap::enqueue(HeapNode *node)
 {
   if (!isFull())
   {
@@ -187,4 +187,59 @@ void enqueue(HeapNode *node)
   }
 }
 
+uint32_t MotorHeap::top(void) const
+{
+  return heap[1]->count;
+}
 
+void MotorHeap::decrement(void)
+{
+  for (int i = 1; i < size; i++)
+  {
+    heap[i]->count --;
+  }
+}
+
+MultiStepperDrive::MultiStepperDrive(StepperMotor *motor[6]):
+  motors(motor)
+{
+
+}
+
+void MultiStepperDrive::init(void)
+{
+  noInterrupts();
+
+  // init Timer 1
+  TCCR1A = 0;
+  TCCR1B = 0;
+
+  timer1_compare_match = 31;
+
+  TCNT1 = timer1_compare_match;
+
+  TIMSK1 |= (1 << OCIE1A);
+
+  interrupts();
+
+  // Set Prescalar 1
+  TCCR1B |= (1 << CS12);  
+}
+
+
+
+void MultiStepperDrive::driveSpeed(float radPerSec[6])
+{
+  for (int i = 0; i < 6; i++)
+  {
+    motors[i]->driveSpeed(radPerSec[i]);
+  }
+}
+
+void MultiStepperDrive::driveSpeed(float radPerSec)
+{
+  for (int i =0; i < 6; i++)
+  {
+    motors[i]->driveSpeed(radPerSec);
+  }
+}

@@ -79,8 +79,8 @@ class MotorHeap
   private:
     HeapNode *heap[7];
     int size;
-    int parent(int in);
-    int child(int in, bool right);
+    int parent(int in) const;
+    int child(int in, bool right) const;
     void heapUp(int in);
     void heapDown(int in);
     void swap(int in_1, int in_2);
@@ -91,6 +91,9 @@ class MotorHeap
     int getSize(void) const;
     bool isEmpty(void) const;
     void print(void) const; 
+    uint32_t top(void) const;
+
+    void decrement(void);
 
     HeapNode *dequeue(void);
     void enqueue(HeapNode *node);
@@ -99,16 +102,15 @@ class MotorHeap
 class MultiStepperDrive 
 {
   private:
-    void drive(void);
-    int num_motors;
-    StepperMotor **motors;
+    int timer1_compare_match;
+    StepperMotor *motors[6];
 
   public:
-    MultiStepperDrive(StepperMotor *motor, int size);
+    MultiStepperDrive(StepperMotor *motor[6]);
 
     void init(void);
 
-    void driveSpeed(float *radPerSec, int size);
+    void driveSpeed(float radPerSec[6]);
     void driveSpeed(float radPerSec);
 };
 

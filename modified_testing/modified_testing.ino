@@ -29,8 +29,27 @@
 #define STEP_6 14
 #define DIR_6 15
 
+MotorHeap motorHeap;
+StepperMotor motor_1(STEP_1,DIR_1,motorHeap, STEPPER_8_MICROSTEP);
+StepperMotor *motors[6];
+MultiStepperDrive stepperDriver(motors);
 
-StepperMotor motor_1(STEP_1,DIR_1,STEPPER_8_MICROSTEP);
+ISR(TIMER1_COMPA_vect)
+{
+  TCNT1 = timer1_compare_match;
+
+  motorHeap.decrement();
+  
+  // check which motor is right now
+  if(!motorHeap.isEmpty())
+  {
+    while(motorHeap.top() == 0)
+    {
+      HeapNode* current = motorHeap.dequeue();
+      current->motor->runHeap();
+    }
+  }
+}
 
 void setup (void)
 {
