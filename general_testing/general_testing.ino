@@ -74,85 +74,51 @@
 //   vTaskDelay(ticksToDelay);
 // }
 
-
-#include <Arduino_FreeRTOS.h>
-#include <semphr.h>
-#include <TimerOne.h> // Include the TimerOne library
-#include "StepperMotor.h" // Include your StepperMotor class definition
-
-// Pin Definitions
-#define ENABLE_PIN 12
-#define DIR_1 12
-#define STEP_1 11
-#define DIR_2 8
-#define STEP_2 9
-#define DIR_3 7
-#define STEP_3 6
-
-// Stepper Motor Instances
-StepperMotor motor_1(STEP_1, DIR_1, STEPPER_8_MICROSTEP);
-StepperMotor motor_2(STEP_2, DIR_2, STEPPER_8_MICROSTEP);
-StepperMotor motor_3(STEP_3, DIR_3, STEPPER_8_MICROSTEP);
-
-// Task Handles
-TaskHandle_t mainTaskHandle;
-
-// Task Functions
-void mainTask(void* pvParameters);
+const int pwmPin = 9;  // Pin for PWM output
+volatile boolean pwmState = false;  // Current state of the PWM signal
+unsigned long pwmInterval = 78;    // Desired interval for the PWM signal (adjust as needed)
+unsigned long previousMillis = 0;   // Store the last time the PWM state was changed
 
 void setup() {
+  pinMode(pwmPin, OUTPUT);
+  
+  // Configure Timer2 for interrupt-based PWM
+  TCCR2A = _BV(WGM20) | _BV(WGM21); // Set timer mode to Fast PWM
+  TCCR2B = _BV(CS21);               // Set prescaler to 8 (PWM frequency formula: F_CPU / (prescaler * 256))
+  
+  // Enable Timer2 overflow interrupt
+  TIMSK2 = _BV(TOIE2);
+  
+  // Start the timer
+  TCNT2 = 0;
+
+  // Initialize serial communication
   Serial.begin(9600);
-  
-  // Initialize TimerOne for default 1ms interrupt
-  Timer1.initialize();
-  Timer1.attachInterrupt(timer1_ISR); // Attach a dummy ISR
-  
-  // Initialize Stepper Motors
-  motor_1.init();
-  motor_1.setPWMFrequency(20000); // 20kHz initially
-  motor_1.setPWMDutyCycle(50); // 50% speed initially
-
-  motor_2.init();
-  motor_2.setPWMFrequency(20000); // 20kHz initially
-  motor_2.setPWMDutyCycle(50); // 50% speed initially
-
-  motor_3.init();
-  motor_3.setPWMFrequency(20000); // 20kHz initially
-  motor_3.setPWMDutyCycle(50); // 50% speed initially
-
-  // Configure Enable Pin
-  pinMode(ENABLE_PIN, OUTPUT);
-  digitalWrite(ENABLE_PIN, HIGH);
-
-  // Create the main task
-  xTaskCreate(mainTask, "Main Task", 200, NULL, 3, &mainTaskHandle);
 }
 
 void loop() {
-  // This loop can remain empty
+  calculateAndPrintPWMFrequency();
 }
 
-void mainTask(void* pvParameters) {
-  float i = 2000;
-  for (;;) {
-    motor_1.driveSpeed(i);
-    motor_1.run();
-
-    motor_2.driveSpeed(i);
-    motor_2.run();
-
-    motor_3.driveSpeed(i);
-    motor_3.run();
-
-    i += 0.1;
-    if (i > 2)
-      i = 0.1;
-
-    // Introduce a small delay between iterations
-    vTaskDelay(pdMS_TO_TICKS(10)); // Delay for 10 milliseconds
+// Timer2 overflow interrupt service routine
+ISR(TIMER2_OVF_vect) {
+  unsigned long currentMillis = millis();
+  
+  // Check if the desired PWM interval has elapsed
+  if (currentMillis - previousMillis >= pwmInterval) {
+    previousMillis = currentMillis;
+    pwmState = !pwmState;
+    digitalWrite(pwmPin, pwmState);
   }
 }
 
-void timer1_ISR() {
-  // Empty ISR or any other action you want to perform at the interrupt
+void calculateAndPrintPWMFrequency() {
+  unsigned long prescalerValue = 8;  // Prescaler value used (CS21)
+  unsigned long timerOverflow = 256; // Timer overflow value (8-bit timer)
+  unsigned long pwmFrequency = F_CPU / (prescalerValue * timerOverflow * pwmInterval);
+  
+  Serial.print("PWM Frequency: ");
+  Serial.print(pwmFrequency);
+  Serial.println(" Hz");
 }
+

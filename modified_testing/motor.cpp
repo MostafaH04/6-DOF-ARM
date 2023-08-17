@@ -8,10 +8,7 @@ StepperMotor::StepperMotor(int step_pin, int dir_pin, MICROSTEPS microsteps):
   currentStep = 0;
   currentAngle = 0;
 
-  stepAngle = 2*M_PI / (double)revoluteSteps;
-
-  pwmFrequency = 20000; // default to 20kHz
-  pwmDutyCycle = 50;    // default to 50% duty cycle
+  stepAngle = 1.0 / (double)revoluteSteps;
 }
 
 void StepperMotor::init(void)
@@ -65,13 +62,8 @@ void StepperMotor::run(void)
 {
   currentSpeed = targetSpeed;
   stepMotor();
-
-  setPWMDutyCycle(50);
   
-  double freq_hz = (currentSpeed / stepAngle);
-  setPWMFrequency(freq_hz); 
-
-  double time_s = 1 / (freq_hz);
+  double time_s = 1 / (currentSpeed / stepAngle);
   uint32_t delayTime = (time_s*1000000);
   delayMicroseconds(delayTime);
 }
