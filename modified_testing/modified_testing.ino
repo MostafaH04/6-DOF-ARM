@@ -30,8 +30,8 @@
 #define DIR_6 15
 
 MotorHeap motorHeap;
-StepperMotor motor_1(STEP_1,DIR_1,motorHeap, STEPPER_8_MICROSTEP);
-StepperMotor *motors[6];
+StepperMotor motor_1(STEP_1,DIR_1, &motorHeap, STEPPER_8_MICROSTEP);
+StepperMotor *motors[6] = {&motor_1, &motor_1, &motor_1, &motor_1, &motor_1, &motor_1};
 MultiStepperDrive stepperDriver(motors);
 
 ISR(TIMER1_COMPA_vect)

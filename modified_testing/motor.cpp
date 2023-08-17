@@ -1,5 +1,7 @@
 #include "motor.hpp"
 
+int timer1_compare_match;
+
 StepperMotor::StepperMotor(int step_pin, int dir_pin, MotorHeap *heap_in, MICROSTEPS microsteps):
   step(step_pin), dir(dir_pin), heap(heap_in)
 {
@@ -158,7 +160,7 @@ void MotorHeap::heapDown(int in)
   if (rightChild < size && 
     heap[rightChild]->count < heap[childPos]->count)
   {
-    childPos = rightChild
+    childPos = rightChild;
   }
   swap(childPos, in);
   heapDown(childPos);
@@ -172,7 +174,7 @@ HeapNode *MotorHeap::dequeue(void)
     size --;
     HeapNode *out = heap[1];
     heap[1] = heap[size];
-    heapDown();
+    heapDown(1);
     return out;
   }
 }
@@ -200,10 +202,9 @@ void MotorHeap::decrement(void)
   }
 }
 
-MultiStepperDrive::MultiStepperDrive(StepperMotor *motor[6]):
+MultiStepperDrive::MultiStepperDrive(StepperMotor **motor):
   motors(motor)
 {
-
 }
 
 void MultiStepperDrive::init(void)
@@ -220,13 +221,12 @@ void MultiStepperDrive::init(void)
 
   TIMSK1 |= (1 << OCIE1A);
 
-  interrupts();
-
   // Set Prescalar 1
   TCCR1B |= (1 << CS12);  
+  
+  interrupts();
+
 }
-
-
 
 void MultiStepperDrive::driveSpeed(float radPerSec[6])
 {
