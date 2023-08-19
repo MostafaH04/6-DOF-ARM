@@ -42,6 +42,7 @@ ISR(TIMER1_COMPA_vect)
   // check which motor is right now
   if(!motorHeap.isEmpty())
   {
+    Serial.println(motorHeap.top());
 
     while(motorHeap.top() == 0)
     {

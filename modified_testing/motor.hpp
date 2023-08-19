@@ -35,7 +35,7 @@ enum stepper_control
 class StepperMotor;
 
 struct HeapNode {
-    uint32_t count;
+    int count;
     StepperMotor *motor;
 };
 
@@ -57,7 +57,7 @@ class MotorHeap
     bool isFull(void) const;
     bool isEmpty(void) const;
     void print(void) const; 
-    uint32_t top(void) const;
+    int top(void) const;
 
     void decrement(void);
 
@@ -81,7 +81,7 @@ class StepperMotor
     stepper_control control_state;
     
     void stepMotor(void);
-    uint32_t lastStepTime;
+    int lastStepTime;
 
     MotorHeap *heap;
     HeapNode heapNode;

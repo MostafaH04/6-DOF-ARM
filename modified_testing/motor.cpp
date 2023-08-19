@@ -67,14 +67,14 @@ void StepperMotor::run(void)
   stepMotor();
   
   double time_s = 1 / (currentSpeed / stepAngle);
-  uint32_t delayTime = (time_s*1000000);
+  int delayTime = (time_s*1000000);
   delayMicroseconds(delayTime);
 }
 
 void StepperMotor::runHeap(void)
 {
   currentSpeed = targetSpeed;
-  uint32_t interruptDelay{};
+  int interruptDelay{};
 
   if (!digitalRead(step)){ // new cycle: step pin is low. calculate target speed
     double time_s = (1/(currentSpeed / stepAngle)); // sec/step
@@ -189,7 +189,7 @@ void MotorHeap::enqueue(HeapNode *node)
   }
 }
 
-uint32_t MotorHeap::top(void) const
+int MotorHeap::top(void) const
 {
   return heap[1]->count;
 }
