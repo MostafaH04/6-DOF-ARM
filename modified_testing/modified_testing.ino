@@ -36,12 +36,6 @@ MultiStepperDrive stepperDriver(motors);
 
 ISR(TIMER1_COMPA_vect)
 {
-  // debug statements
-  Serial.println("Interrupt occurred"); // check if interrupt occurred
-
-  Serial.print("Motor Heap Size: ");
-  Serial.println(motorHeap.getSize());  
-
   TCNT1 = timer1_compare_match;
 
   motorHeap.decrement();
@@ -49,7 +43,6 @@ ISR(TIMER1_COMPA_vect)
   // check which motor is right now
   if(!motorHeap.isEmpty())
   {
-    Serial.println("Motors in Queue:");
     motorHeap.print();
 
     while(motorHeap.top() == 0)
@@ -77,8 +70,6 @@ static void main_task(void * pvParameters)
   for (;;)
   {
     motor_1.driveSpeed(i);
-    Serial.print("Setting speed to motor: ");
-    Serial.println(i);
     motor_1.run();
     i += 0.1;
     if (i > 2)
