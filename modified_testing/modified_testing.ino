@@ -51,6 +51,9 @@ ISR(TIMER1_COMPA_vect)
       current->motor->runHeap();
     }
   }
+  else{
+    Serial.println("Heap is empty");
+  }
 }
 
 void setup (void)
@@ -61,21 +64,26 @@ void setup (void)
   pinMode(ENABLE_PIN, OUTPUT);
 
   xTaskCreate(main_task, "Main Task", 200, NULL, 3, NULL);
+
+  stepperDriver.init();
+  stepperDriver.driveSpeed(2000);
+  motor_1.runHeap(); 
 }
 
 static void main_task(void * pvParameters)
 {
-  float i = 2000;
-  digitalWrite(ENABLE_PIN, HIGH);
-  for (;;)
-  {
-    motor_1.driveSpeed(i);
-    motor_1.run();
-    i += 0.1;
-    if (i > 2)
-      i = 0.1;
+  // float i = 2000;
+  // digitalWrite(ENABLE_PIN, HIGH);
+  // for (;;)
+  // {
+  //   motor_1.driveSpeed(i);
+  //   motor_1.run();
+  //   i += 0.1;
+  //   if (i > 2)
+  //     i = 0.1;
 
-  }
+  // }
+  stepperDriver
 }
 
 void loop (void)
@@ -87,162 +95,3 @@ void vTaskDelayMicro(unsigned int delayMicro)
 
   vTaskDelay(ticksToDelay);
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-// // SID's VERSION WITH SERIAL MONITOR - controls each motor one by one, stops them one by one
-
-// #include <Arduino_FreeRTOS.h>
-// #include <semphr.h>
-// #include "motor.hpp"
-
-// // enable pin 
-// #define ENABLE_PIN 12
-
-// // Define the number of motors
-// #define NUM_MOTORS 6
-
-// // Array of motor step and dir pins
-// int stepPins[NUM_MOTORS] = {11, 9, 7, 5, 3, 14}; // Update with your step pin numbers
-// int dirPins[NUM_MOTORS] = {10, 8, 6, 4, 2, 15}; // Update with your dir pin numbers
-
-// MotorHeap motorHeap;
-// StepperMotor *motors[NUM_MOTORS];
-
-// MultiStepperDrive stepperDriver(motors);
-
-// void setup(void)
-// {
-//   Serial.begin(9600);
-//   pinMode(ENABLE_PIN, OUTPUT);
-
-//   for (int i = 0; i < NUM_MOTORS; i++)
-//   {
-//     motors[i] = new StepperMotor(stepPins[i], dirPins[i], &motorHeap, STEPPER_8_MICROSTEP);
-//     motors[i]->init();
-//   }
-
-//   xTaskCreate(main_task, "Main Task", 200, NULL, 3, NULL);
-// }
-
-// static void main_task(void *pvParameters)
-// {
-//   digitalWrite(ENABLE_PIN, HIGH);
-
-//   for (int i = 0; i < NUM_MOTORS; i++)
-//   {
-//     float speed = 2000;
-
-//     Serial.print("Setting speed to motor ");
-//     Serial.print(i);
-//     Serial.print(": ");
-//     Serial.println(speed);
-
-//     motors[i]->driveSpeed(speed);
-
-//     vTaskDelay(3000 / portTICK_PERIOD_MS); // Delay for 3 seconds
-
-//     motors[i]->driveSpeed(0); // Stop the motor
-
-//     Serial.print("Motor ");
-//     Serial.print(i);
-//     Serial.println(" stopped running.");
-//   }
-
-//   while (1)
-//   {
-//     vTaskDelay(1000); // Keep the task running
-//   }
-// }
-
-// void loop(void)
-// {
-// }
-
-// void vTaskDelayMicro(unsigned int delayMicro)
-// {
-//   TickType_t ticksToDelay = delayMicro * configTICK_RATE_HZ / 1000000;
-
-//   vTaskDelay(ticksToDelay);
-// }
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-// // SID's VERSION WITH SERIAL MONITOR - control all 6 motors at once, sets them to 2000 for 5s, stops
-
-// #include <Arduino_FreeRTOS.h>
-// #include <semphr.h>
-// #include "motor.hpp"
-
-// // enable pin 
-// #define ENABLE_PIN 12
-
-// // Define the number of motors
-// #define NUM_MOTORS 6
-
-// // Array of motor step and dir pins
-// int stepPins[NUM_MOTORS] = {11, 9, 7, 5, 3, 14};
-// int dirPins[NUM_MOTORS] = {10, 8, 6, 4, 2, 15}; 
-
-// MotorHeap motorHeap;
-// StepperMotor *motors[NUM_MOTORS];
-
-// MultiStepperDrive stepperDriver(motors);
-
-// void setup(void)
-// {
-//   Serial.begin(9600);
-//   pinMode(ENABLE_PIN, OUTPUT);
-
-//   for (int i = 0; i < NUM_MOTORS; i++)
-//   {
-//     motors[i] = new StepperMotor(stepPins[i], dirPins[i], &motorHeap, STEPPER_8_MICROSTEP);
-//     motors[i]->init();
-//   }
-
-//   xTaskCreate(main_task, "Main Task", 200, NULL, 3, NULL);
-// }
-
-// static void main_task(void *pvParameters)
-// {
-//   digitalWrite(ENABLE_PIN, HIGH);
-
-//   for (int i = 0; i < NUM_MOTORS; i++)
-//   {
-//     float speed = 2000;
-
-//     Serial.print("Setting speed to motor ");
-//     Serial.print(i);
-//     Serial.print(": ");
-//     Serial.println(speed);
-
-//     motors[i]->driveSpeed(speed);
-//   }
-
-//   vTaskDelay(5000 / portTICK_PERIOD_MS); // Run motors at 2000 steps for 5 seconds
-
-//   for (int i = 0; i < NUM_MOTORS; i++)
-//   {
-//     motors[i]->driveSpeed(0); // Stop the motor
-
-//     Serial.print("Motor ");
-//     Serial.print(i);
-//     Serial.println(" stopped running.");
-//   }
-
-//   vTaskDelay(5000 / portTICK_PERIOD_MS); // Delay for 5 seconds before next iteration
-
-//   while (1)
-//   {
-//     vTaskDelay(1000); // Keep the task running
-//   }
-// }
-
-// void loop(void)
-// {
-// }
-
-// void vTaskDelayMicro(unsigned int delayMicro)
-// {
-//   TickType_t ticksToDelay = delayMicro * configTICK_RATE_HZ / 1000000;
-
-//   vTaskDelay(ticksToDelay);
-// }
