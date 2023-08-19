@@ -83,7 +83,7 @@ static void main_task(void * pvParameters)
   //     i = 0.1;
 
   // }
-  stepperDriver
+  for (;;){}
 }
 
 void loop (void)
