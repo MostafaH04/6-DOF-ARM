@@ -108,7 +108,7 @@ int MotorHeap::getSize() const
 
 bool MotorHeap::isEmpty() const
 {
-  return size == 0;
+  return size == 1;
 }
 
 bool MotorHeap::isFull() const
@@ -218,11 +218,11 @@ void MultiStepperDrive::init(void)
   timer1_compare_match = 31;
 
   TCNT1 = timer1_compare_match;
+  TCCR1B |= (1 << CS10);  
 
   TIMSK1 |= (1 << OCIE1A);
 
   // Set Prescalar 1
-  TCCR1B |= (1 << CS12);  
   
   interrupts();
 

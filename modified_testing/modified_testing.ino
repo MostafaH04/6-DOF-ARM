@@ -39,11 +39,9 @@ ISR(TIMER1_COMPA_vect)
   TCNT1 = timer1_compare_match;
 
   motorHeap.decrement();
-  
   // check which motor is right now
   if(!motorHeap.isEmpty())
   {
-    motorHeap.print();
 
     while(motorHeap.top() == 0)
     {
@@ -52,21 +50,20 @@ ISR(TIMER1_COMPA_vect)
     }
   }
   else{
-    Serial.println("Heap is empty");
   }
 }
 
 void setup (void)
 {
   Serial.begin(9600);
-  motor_1.init(); 
+  motor_1.init();
 
   pinMode(ENABLE_PIN, OUTPUT);
 
   xTaskCreate(main_task, "Main Task", 200, NULL, 3, NULL);
 
   stepperDriver.init();
-  stepperDriver.driveSpeed(2000);
+  motor_1.driveSpeed(100);
   motor_1.runHeap(); 
 }
 
