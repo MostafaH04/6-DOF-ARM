@@ -33,10 +33,10 @@ MotorHeap motorHeap;
 StepperMotor motor_1(STEP_1,DIR_1, &motorHeap, STEPPER_8_MICROSTEP);
 StepperMotor motor_2(STEP_2,DIR_2, &motorHeap, STEPPER_8_MICROSTEP);
 StepperMotor motor_3(STEP_3,DIR_3, &motorHeap, STEPPER_8_MICROSTEP);
-StepperMotor motor_4(STEP_4,DIR_4, &motorHeap, STEPPER_8_MICROSTEP);
-StepperMotor motor_5(STEP_5,DIR_5, &motorHeap, STEPPER_8_MICROSTEP);
-StepperMotor motor_6(STEP_6,DIR_6, &motorHeap, STEPPER_8_MICROSTEP);
-StepperMotor *motors[6] = {&motor_1, &motor_2, &motor_3, &motor_4, &motor_5, &motor_6};
+// StepperMotor motor_4(STEP_4,DIR_4, &motorHeap, STEPPER_8_MICROSTEP);
+// StepperMotor motor_5(STEP_5,DIR_5, &motorHeap, STEPPER_8_MICROSTEP);
+// StepperMotor motor_6(STEP_6,DIR_6, &motorHeap, STEPPER_8_MICROSTEP);
+StepperMotor *motors[6] = {&motor_1, &motor_2, &motor_3, &motor_1, &motor_2, &motor_3};
 MultiStepperDrive stepperDriver(motors);
 
 ISR(TIMER1_COMPA_vect)
@@ -62,6 +62,8 @@ void setup (void)
 {
   Serial.begin(9600);
   motor_1.init(); 
+  motor_2.init(); 
+  motor_3.init(); 
 
   pinMode(ENABLE_PIN, OUTPUT);
 
