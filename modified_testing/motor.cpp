@@ -75,7 +75,7 @@ void StepperMotor::runHeap(void)
 {
   currentSpeed = targetSpeed;
   int interruptDelay{};
-
+  Serial.println("runHeap got called!");
   if (!digitalRead(step)){ // new cycle: step pin is low. calculate target speed
     double time_s = (1/(currentSpeed / stepAngle)); // sec/step
     lastStepTime = (time_s*1000000);
@@ -92,9 +92,8 @@ void StepperMotor::runHeap(void)
     interruptDelay = (lastStepTime - MIN_PULSE) / INTERRUPT_INTERVAL_US;
     digitalWrite(step, LOW);
   }
-
-  heapNode.count = interruptDelay;
-  heap->enqueue(&heapNode);
+  // heapNode.count = interruptDelay;
+  // heap->enqueue(&heapNode);
 }
 
 MotorHeap::MotorHeap():
@@ -191,7 +190,10 @@ void MotorHeap::enqueue(HeapNode *node)
 
 int MotorHeap::top(void) const
 {
-  return heap[1]->count;
+  if(!isEmpty()){
+    return heap[1]->count;
+  }
+  return -1;
 }
 
 void MotorHeap::decrement(void)
@@ -218,7 +220,7 @@ void MultiStepperDrive::init(void)
   timer1_compare_match = 31;
 
   TCNT1 = timer1_compare_match;
-  TCCR1B |= (1 << CS10);  
+  TCCR1B |= (1 << CS12);  
 
   TIMSK1 |= (1 << OCIE1A);
 

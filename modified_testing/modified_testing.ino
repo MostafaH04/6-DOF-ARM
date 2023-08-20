@@ -39,19 +39,21 @@ ISR(TIMER1_COMPA_vect)
   TCNT1 = timer1_compare_match;
 
   motorHeap.decrement();
-  // check which motor is right now
+
   if(!motorHeap.isEmpty())
   {
     Serial.println(motorHeap.top());
-
-    while(motorHeap.top() == 0)
+    while(motorHeap.top() == 1)
     {
+      Serial.println("top == 1");
       HeapNode* current = motorHeap.dequeue();
-      current->motor->runHeap();
+      // current->motor->runHeap(); // problem
     }
   }
   else{
   }
+
+  interrupts();
 }
 
 void setup (void)
@@ -66,6 +68,10 @@ void setup (void)
   stepperDriver.init();
   motor_1.driveSpeed(100);
   motor_1.runHeap(); 
+
+  HeapNode heapNode;
+  heapNode.count = interruptDelay
+  heap->enqueue(&heapNode);
 }
 
 static void main_task(void * pvParameters)
