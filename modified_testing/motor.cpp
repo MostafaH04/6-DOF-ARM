@@ -76,7 +76,8 @@ void StepperMotor::runHeap(void)
   currentSpeed = targetSpeed;
   int interruptDelay{};
   Serial.println("runHeap got called!");
-  if (!digitalRead(step)){ // new cycle: step pin is low. calculate target speed
+  if (!stepping){ // new cycle: step pin is low. calculate target speed
+    stepping = true;
     double time_s = (1/(currentSpeed / stepAngle)); // sec/step
     lastStepTime = (time_s*1000000);
     interruptDelay = MIN_PULSE / INTERRUPT_INTERVAL_US;
@@ -89,6 +90,7 @@ void StepperMotor::runHeap(void)
     digitalWrite(step, HIGH);
   }
   else{
+    stepping = false;
     interruptDelay = (lastStepTime - MIN_PULSE) / INTERRUPT_INTERVAL_US;
     digitalWrite(step, LOW);
   }
