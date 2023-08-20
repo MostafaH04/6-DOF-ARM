@@ -66,7 +66,7 @@ void setup (void)
   xTaskCreate(main_task, "Main Task", 200, NULL, 3, NULL);
 
   stepperDriver.init();
-  motor_1.driveSpeed(0.25);
+  motor_1.driveSpeed(100);
   motor_1.runHeap();
 }
 

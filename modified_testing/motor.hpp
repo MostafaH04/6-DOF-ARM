@@ -74,16 +74,16 @@ class StepperMotor
     double stepAngle;
 
     float targetSpeed;
-    float currentSpeed;
+    volatile float currentSpeed;
     int currentStep;
     float currentAngle;
 
-    bool stepping = false;
+    volatile bool stepping {false};
 
     stepper_control control_state;
     
     void stepMotor(void);
-    int lastStepTime;
+    volatile int lastStepTime;
 
     MotorHeap *heap;
     HeapNode heapNode;
