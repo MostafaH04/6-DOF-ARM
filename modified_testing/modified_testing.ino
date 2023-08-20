@@ -1,4 +1,4 @@
-#include <Arduino_FreeRTOS.h>
+ #include <Arduino_FreeRTOS.h>
 #include <semphr.h>
 #include "motor.hpp"
 
@@ -32,29 +32,33 @@
 MotorHeap motorHeap;
 StepperMotor motor_1(STEP_1,DIR_1, &motorHeap, STEPPER_8_MICROSTEP);
 StepperMotor motor_2(STEP_2,DIR_2, &motorHeap, STEPPER_8_MICROSTEP);
+StepperMotor motor_3(STEP_3,DIR_3, &motorHeap, STEPPER_8_MICROSTEP);
+StepperMotor motor_4(STEP_4,DIR_4, &motorHeap, STEPPER_8_MICROSTEP);
+StepperMotor motor_5(STEP_5,DIR_5, &motorHeap, STEPPER_8_MICROSTEP);
+StepperMotor motor_6(STEP_6,DIR_6, &motorHeap, STEPPER_8_MICROSTEP);
 StepperMotor *motors[6] = {&motor_1, &motor_1, &motor_1, &motor_1, &motor_1, &motor_1};
-MultiStepperDrive stepperDriver(motors);
+//MultiStepperDrive stepperDriver(motors);
 
-ISR(TIMER1_COMPA_vect)
-{
-  noInterrupts();
-  motorHeap.decrement();
-  
-  if(!motorHeap.isEmpty())
-  {
-    while(motorHeap.top() == 0)
-    {
-      Serial.println("top == 0");
-      HeapNode* current = motorHeap.dequeue();
-      current->motor->runHeap(); // problem solved!
-    }
-  }
-  else{
-  }
-
-  interrupts();
-  TCNT1 = timer1_compare_match;
-}
+//ISR(TIMER1_COMPA_vect)
+//{TCNT1 = timer1_compare_match;
+//  digitalWrite(5,!digitalRead(5));
+////  motorHeap.decrement();
+////  
+////  if(!motorHeap.isEmpty())
+////  {
+////    while(motorHeap.top() == 0)
+////    {
+//// 
+////      HeapNode* current = motorHeap.dequeue();
+////      current->motor->runHeap(); // problem solved!
+////    }
+////  }
+////  else{
+////  }
+//
+//  
+//  
+//}
 
 void setup (void)
 {
@@ -64,10 +68,10 @@ void setup (void)
   pinMode(ENABLE_PIN, OUTPUT);
 
   xTaskCreate(main_task, "Main Task", 200, NULL, 3, NULL);
-
-  stepperDriver.init();
-  motor_1.driveSpeed(100);
-  motor_1.runHeap();
+  pinMode(5,OUTPUT);
+  //stepperDriver.init();
+  //motor_1.driveSpeed(100);
+  //motor_1.runHeap();
 }
 
 static void main_task(void * pvParameters)
@@ -83,7 +87,16 @@ static void main_task(void * pvParameters)
   //     i = 0.1;
 
   // }
-  for (;;){}
+  int motorSelector = 0;
+  for (;;)
+  {
+    for (int i = 0; i < 1000; i++)
+    {
+      motors[motorSelector]->driveSpeed(1000);
+      motors[motorSelector]->run();
+    }
+    motorSelector = (motorSelector++)%6;
+  }
 }
 
 void loop (void)
@@ -95,5 +108,3 @@ void vTaskDelayMicro(unsigned int delayMicro)
 
   vTaskDelay(ticksToDelay);
 }
-
-

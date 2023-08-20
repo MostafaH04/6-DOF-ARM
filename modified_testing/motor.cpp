@@ -75,7 +75,7 @@ void StepperMotor::runHeap(void)
 {
   currentSpeed = targetSpeed;
   int interruptDelay{};
-  Serial.println("runHeap got called!");
+  
   if (!stepping){ // new cycle: step pin is low. calculate target speed
     stepping = true;
     double time_s = (1/(currentSpeed / stepAngle)); // sec/step
@@ -257,7 +257,7 @@ void MultiStepperDrive::init(void)
   TCCR1A = 0;
   TCCR1B = 0;
 
-  timer1_compare_match = 31;
+  timer1_compare_match = 0;
 
   TCNT1 = timer1_compare_match;
   TCCR1B |= (1 << CS10);  
