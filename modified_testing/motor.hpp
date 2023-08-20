@@ -78,6 +78,8 @@ class StepperMotor
     int currentStep;
     float currentAngle;
 
+    bool stepping = false;
+
     stepper_control control_state;
     
     void stepMotor(void);
