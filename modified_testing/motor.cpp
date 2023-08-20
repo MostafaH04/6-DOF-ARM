@@ -92,8 +92,8 @@ void StepperMotor::runHeap(void)
     interruptDelay = (lastStepTime - MIN_PULSE) / INTERRUPT_INTERVAL_US;
     digitalWrite(step, LOW);
   }
-  // heapNode.count = interruptDelay;
-  // heap->enqueue(&heapNode);
+  heapNode.count = interruptDelay;
+  heap->enqueue(&heapNode);
 }
 
 MotorHeap::MotorHeap():
@@ -117,8 +117,10 @@ bool MotorHeap::isFull() const
 
 void MotorHeap::print() const
 {
-  for (int i = 0; i < size; i++)
+  for (int i = 1; i < size; i++){
     Serial.print(heap[i]->count);
+    Serial.print(", ");
+  }
   Serial.println();
 }
 
@@ -134,20 +136,56 @@ int MotorHeap::child(int in, bool right) const
 
 void MotorHeap::swap(int in_1, int in_2)
 {
+  // Serial.print("heap[in_2] BEFORE: ");
+  // Serial.println(heap[in_2]->count);
+
+  // Serial.print("heap[in_1] AFTER: ");
+  // Serial.println(heap[in_1]->count);
+
   HeapNode *temp = heap[in_1];
   heap[in_1] = heap[in_2];
   heap[in_2] = temp;
+
+  // Serial.print("heap[in_2] AFTER: ");
+  // Serial.println(heap[in_2]->count);
+
+  // Serial.print("heap[in_1] AFTER: ");
+  // Serial.println(heap[in_1]->count);
 }
 
 void MotorHeap::heapUp(int in)
 {
-  if (in >= size || heap[parent(in)]->count < heap[in]->count)
+  // Serial.print("heap[in]->count, in: ");
+  // Serial.print(heap[in]->count);
+  // Serial.print(", ");
+  // Serial.println(in);
+
+  if (in >= size || heap[parent(in)]->count < heap[in]->count || in <= 1)
   {
     return;
   }
+
   swap(in, parent(in));
   heapUp(parent(in));
 }
+
+// void MotorHeap::heapUp(int in)
+// {
+//     // Ensure in is a valid index and not the root node
+//     if (in > 1) {
+//         int parentIndex = parent(in);
+        
+//         // Compare the child with its parent
+//         if (heap[in]->count < heap[parentIndex]->count) {
+//             // Swap child and parent
+//             swap(in, parentIndex);
+            
+//             // Recursively heapUp the parent
+//             heapUp(parentIndex);
+//         }
+//     }
+// }
+
 
 void MotorHeap::heapDown(int in)
 {
@@ -220,7 +258,7 @@ void MultiStepperDrive::init(void)
   timer1_compare_match = 31;
 
   TCNT1 = timer1_compare_match;
-  TCCR1B |= (1 << CS12);  
+  TCCR1B |= (1 << CS10);  
 
   TIMSK1 |= (1 << OCIE1A);
 
@@ -240,7 +278,7 @@ void MultiStepperDrive::driveSpeed(float radPerSec[6])
 
 void MultiStepperDrive::driveSpeed(float radPerSec)
 {
-  for (int i =0; i < 6; i++)
+  for (int i = 0; i < 6; i++)
   {
     motors[i]->driveSpeed(radPerSec);
   }

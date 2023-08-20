@@ -31,29 +31,29 @@
 
 MotorHeap motorHeap;
 StepperMotor motor_1(STEP_1,DIR_1, &motorHeap, STEPPER_8_MICROSTEP);
+StepperMotor motor_2(STEP_2,DIR_2, &motorHeap, STEPPER_8_MICROSTEP);
 StepperMotor *motors[6] = {&motor_1, &motor_1, &motor_1, &motor_1, &motor_1, &motor_1};
 MultiStepperDrive stepperDriver(motors);
 
 ISR(TIMER1_COMPA_vect)
 {
-  TCNT1 = timer1_compare_match;
-
+  noInterrupts();
   motorHeap.decrement();
-
+  
   if(!motorHeap.isEmpty())
   {
-    Serial.println(motorHeap.top());
-    while(motorHeap.top() == 1)
+    while(motorHeap.top() == 0)
     {
-      Serial.println("top == 1");
+      Serial.println("top == 0");
       HeapNode* current = motorHeap.dequeue();
-      // current->motor->runHeap(); // problem
+      current->motor->runHeap(); // problem solved!
     }
   }
   else{
   }
 
   interrupts();
+  TCNT1 = timer1_compare_match;
 }
 
 void setup (void)
@@ -66,18 +66,14 @@ void setup (void)
   xTaskCreate(main_task, "Main Task", 200, NULL, 3, NULL);
 
   stepperDriver.init();
-  motor_1.driveSpeed(100);
-  motor_1.runHeap(); 
-
-  HeapNode heapNode;
-  heapNode.count = interruptDelay
-  heap->enqueue(&heapNode);
+  motor_1.driveSpeed(0.25);
+  motor_1.runHeap();
 }
 
 static void main_task(void * pvParameters)
 {
   // float i = 2000;
-  // digitalWrite(ENABLE_PIN, HIGH);
+  digitalWrite(ENABLE_PIN, LOW);
   // for (;;)
   // {
   //   motor_1.driveSpeed(i);
@@ -99,3 +95,5 @@ void vTaskDelayMicro(unsigned int delayMicro)
 
   vTaskDelay(ticksToDelay);
 }
+
+
