@@ -171,23 +171,6 @@ void MotorHeap::heapUp(int in)
   heapUp(parent(in));
 }
 
-// void MotorHeap::heapUp(int in)
-// {
-//     // Ensure in is a valid index and not the root node
-//     if (in > 1) {
-//         int parentIndex = parent(in);
-        
-//         // Compare the child with its parent
-//         if (heap[in]->count < heap[parentIndex]->count) {
-//             // Swap child and parent
-//             swap(in, parentIndex);
-            
-//             // Recursively heapUp the parent
-//             heapUp(parentIndex);
-//         }
-//     }
-// }
-
 
 void MotorHeap::heapDown(int in)
 {
