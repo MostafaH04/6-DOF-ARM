@@ -18,10 +18,13 @@ void setup() {
 }
 
 void loop() {
-  // Your main code here
+  Serial.println("Loop running...");
+  delay(1000);
 }
 
 ISR(TIMER1_COMPA_vect) {
   TCNT1 = timer1_compare_match; 
   digitalWrite(5, !digitalRead(5));
+
+  Serial.println("Interrupt occurred");
 }
