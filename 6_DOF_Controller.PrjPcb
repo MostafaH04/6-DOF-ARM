@@ -100,6 +100,23 @@ GenerateClassCluster=0
 DocumentUniqueId=YMDSLHYP
 
 [Document4]
+DocumentPath=..\..\..\..\..\Public\Documents\Altium\Drivers.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=WKOLQZTL
+
+[Document5]
 DocumentPath=FTDI.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -116,7 +133,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=DLBEJSZG
 
-[Document5]
+[Document6]
 DocumentPath=PCB Layout.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
