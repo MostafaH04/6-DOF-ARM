@@ -1,0 +1,18 @@
+Added Component: Designator=MH1(Mounting Hole_1)
+Added Component: Designator=MH1(Mounting Hole_1)
+Added Component: Designator=MH1(Mounting Hole_1)
+Added Component: Designator=MH1(Mounting Hole_1)
+Add Pin To Net: Unknown Pin: Pin D1-1
+Add Pin To Net: Unknown Pin: Pin D1-2
+Add Pin To Net: Unknown Pin: Pin D2-1
+Add Pin To Net: Unknown Pin: Pin D2-2
+Add Pin To Net: Unknown Pin: Pin D3-1
+Add Pin To Net: Unknown Pin: Pin D3-2
+Add Net: Net with name "NetR2_1" already exists
+Add Class Member: Failed to add class member : Component D1 Light-Emitting Diode
+Add Class Member: Failed to add class member : Component D2 Light-Emitting Diode
+Add Class Member: Failed to add class member : Component D3 Light-Emitting Diode
+Added Member To Class: ClassName=Controller Member=Component MH1 Mounting Hole_1
+Added Member To Class: ClassName=Controller Member=Component MH1 Mounting Hole_1
+Added Member To Class: ClassName=Controller Member=Component MH1 Mounting Hole_1
+Added Member To Class: ClassName=Controller Member=Component MH1 Mounting Hole_1
