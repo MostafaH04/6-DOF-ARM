@@ -1,0 +1,240 @@
+Removed Pin From Net: NetName=NetJ6_4 Pin=U1-1
+Removed Pin From Net: NetName=GND Pin=U1-3
+Removed Pin From Net: NetName=NetDS1_2 Pin=U1-4
+Removed Pin From Net: NetName=NetC7_1 Pin=U1-5
+Removed Pin From Net: NetName=NetC8_1 Pin=U1-7
+Removed Pin From Net: NetName=NetC9_1 Pin=U1-8
+Removed Pin From Net: NetName=NetJ4_1 Pin=U1-19
+Removed Pin From Net: NetName=NetR4_1 Pin=U1-20
+Removed Pin From Net: NetName=NetJ6_2 Pin=U1-21
+Removed Pin From Net: NetName=NetJ4_2 Pin=U1-22
+Removed Pin From Net: NetName=NetJ4_3 Pin=U1-23
+Removed Pin From Net: NetName=NetJ6_1 Pin=U1-24
+Removed Pin From Net: NetName=NetJ2_2 Pin=U1-25
+Removed Pin From Net: NetName=NetJ6_3 Pin=U1-26
+Removed Pin From Net: NetName=NetR3_1 Pin=U1-27
+Removed Pin From Net: NetName=24 V Pin=U1-28
+Removed Member From Class: ClassName=Controller Member=U1
+Removed Member From Class: ClassName=Drivers Member=U1
+Change Component Footprint: Designator=J1 Old Footprint=62900416021 New Footprint=62900416021
+Change Component Footprint: Designator=J3 Old Footprint=691213710002 New Footprint=691213710002
+Added Component: Designator=U?(QFN50P500X500X90_HS-29N)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.digikey.ca/en/products/detail/trinamic-motion-control-gmbh/TMC2209-LA-T/10232491"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Created By"; Value = "Mostafa H & Siddharth V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Date Created"; Value = "2023-08-20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "1460-1398-2-ND - Tape & Reel (TR)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Parameter 1"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=U?(QFN50P500X500X90_HS-29N)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.digikey.ca/en/products/detail/trinamic-motion-control-gmbh/TMC2209-LA-T/10232491"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Created By"; Value = "Mostafa H & Siddharth V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Date Created"; Value = "2023-08-20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "1460-1398-2-ND - Tape & Reel (TR)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Parameter 1"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=U?(QFN50P500X500X90_HS-29N)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.digikey.ca/en/products/detail/trinamic-motion-control-gmbh/TMC2209-LA-T/10232491"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Created By"; Value = "Mostafa H & Siddharth V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Date Created"; Value = "2023-08-20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "1460-1398-2-ND - Tape & Reel (TR)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Parameter 1"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=U?(QFN50P500X500X90_HS-29N)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.digikey.ca/en/products/detail/trinamic-motion-control-gmbh/TMC2209-LA-T/10232491"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Created By"; Value = "Mostafa H & Siddharth V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Date Created"; Value = "2023-08-20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "1460-1398-2-ND - Tape & Reel (TR)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Parameter 1"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=U?(TQFP80P900X900X120-32N)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.digikey.ca/en/products/detail/microchip-technology/ATMEGA328P-AU/1832260"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/ATmega48A-PA-88A-PA-168A-PA-328-P-DS-DS40002061B.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Created By"; Value = "Mostafa H"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Date Created"; Value = "2023-08-19"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "ATMEGA328P-AU-ND"; VariantName = "[No Variations]"
+Added Component: Designator=U?(QFN50P500X500X90_HS-29N)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.digikey.ca/en/products/detail/trinamic-motion-control-gmbh/TMC2209-LA-T/10232491"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Created By"; Value = "Mostafa H & Siddharth V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Date Created"; Value = "2023-08-20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "1460-1398-2-ND - Tape & Reel (TR)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Parameter 1"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=U?(QFN50P500X500X90_HS-29N)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.digikey.ca/en/products/detail/trinamic-motion-control-gmbh/TMC2209-LA-T/10232491"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Created By"; Value = "Mostafa H & Siddharth V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Date Created"; Value = "2023-08-20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "1460-1398-2-ND - Tape & Reel (TR)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Parameter 1"; Value = ""; VariantName = "[No Variations]"
+Add Pin To Net: Unknown Pin: Pin D1-1
+Add Pin To Net: Unknown Pin: Pin D1-2
+Add Pin To Net: Unknown Pin: Pin D2-1
+Add Pin To Net: Unknown Pin: Pin D2-2
+Add Pin To Net: Unknown Pin: Pin D3-1
+Add Pin To Net: Unknown Pin: Pin D3-2
+Added Pin To Net: NetName=NetR1_1 Pin=U1-1
+Added Pin To Net: NetName=NetC2_1 Pin=U1-2
+Added Pin To Net: NetName=+5 Pin=U1-4
+Added Pin To Net: NetName=GND Pin=U1-7
+Added Pin To Net: NetName=NetJ1_3 Pin=U1-15
+Added Pin To Net: NetName=NetJ1_2 Pin=U1-16
+Added Pin To Net: NetName=+5 Pin=U1-17
+Added Pin To Net: NetName=+5 Pin=U1-19
+Added Pin To Net: NetName=+5 Pin=U1-20
+Added Pin To Net: NetName=GND Pin=U1-21
+Added Pin To Net: NetName=NetD2_2 Pin=U1-22
+Added Pin To Net: NetName=NetD3_2 Pin=U1-23
+Added Pin To Net: NetName=GND Pin=U1-25
+Added Pin To Net: NetName=GND Pin=U1-26
+Added Pin To Net: NetName=NetJ5_4 Pin=U?-1
+Added Pin To Net: NetName=NetJ6_4 Pin=U?-1
+Added Pin To Net: NetName=NetJ7_4 Pin=U?-1
+Added Pin To Net: NetName=NetJ8_4 Pin=U?-1
+Added Pin To Net: NetName=NetJ9_4 Pin=U?-1
+Added Pin To Net: NetName=NetJ10_4 Pin=U?-1
+Added Pin To Net: NetName=GND Pin=U?-3
+Added Pin To Net: NetName=GND Pin=U?-3
+Added Pin To Net: NetName=GND Pin=U?-3
+Added Pin To Net: NetName=GND Pin=U?-3
+Added Pin To Net: NetName=GND Pin=U?-3
+Added Pin To Net: NetName=GND Pin=U?-3
+Added Pin To Net: NetName=GND Pin=U?-3
+Added Pin To Net: NetName=NetC7_2 Pin=U?-4
+Added Pin To Net: NetName=NetC22_2 Pin=U?-4
+Added Pin To Net: NetName=NetC23_2 Pin=U?-4
+Added Pin To Net: NetName=NetC42_2 Pin=U?-4
+Added Pin To Net: NetName=NetC43_2 Pin=U?-4
+Added Pin To Net: NetName=NetC44_2 Pin=U?-4
+Added Pin To Net: NetName=NetDS1_2 Pin=U?-4
+Added Pin To Net: NetName=GND Pin=U?-5
+Added Pin To Net: NetName=NetC7_1 Pin=U?-5
+Added Pin To Net: NetName=NetC22_1 Pin=U?-5
+Added Pin To Net: NetName=NetC23_1 Pin=U?-5
+Added Pin To Net: NetName=NetC42_1 Pin=U?-5
+Added Pin To Net: NetName=NetC43_1 Pin=U?-5
+Added Pin To Net: NetName=NetC44_1 Pin=U?-5
+Added Pin To Net: NetName=NetC6_2 Pin=U?-6
+Added Pin To Net: NetName=NetC20_2 Pin=U?-6
+Added Pin To Net: NetName=NetC21_2 Pin=U?-6
+Added Pin To Net: NetName=NetC39_2 Pin=U?-6
+Added Pin To Net: NetName=NetC40_2 Pin=U?-6
+Added Pin To Net: NetName=NetC41_2 Pin=U?-6
+Added Pin To Net: NetName=NetC8_1 Pin=U?-7
+Added Pin To Net: NetName=NetC9_1 Pin=U?-8
+Added Pin To Net: NetName=+5 Pin=U?-18
+Added Pin To Net: NetName=GND Pin=U?-18
+Added Pin To Net: NetName=GND Pin=U?-18
+Added Pin To Net: NetName=GND Pin=U?-18
+Added Pin To Net: NetName=GND Pin=U?-18
+Added Pin To Net: NetName=GND Pin=U?-18
+Added Pin To Net: NetName=GND Pin=U?-18
+Added Pin To Net: NetName=NetJ4_1 Pin=U?-19
+Added Pin To Net: NetName=+5 Pin=U?-20
+Added Pin To Net: NetName=NetR4_1 Pin=U?-20
+Added Pin To Net: NetName=NetR14_1 Pin=U?-20
+Added Pin To Net: NetName=NetR15_1 Pin=U?-20
+Added Pin To Net: NetName=NetR25_1 Pin=U?-20
+Added Pin To Net: NetName=NetR26_1 Pin=U?-20
+Added Pin To Net: NetName=NetR27_1 Pin=U?-20
+Added Pin To Net: NetName=GND Pin=U?-21
+Added Pin To Net: NetName=NetJ5_1 Pin=U?-21
+Added Pin To Net: NetName=NetJ6_2 Pin=U?-21
+Added Pin To Net: NetName=NetJ7_2 Pin=U?-21
+Added Pin To Net: NetName=NetJ8_1 Pin=U?-21
+Added Pin To Net: NetName=NetJ9_1 Pin=U?-21
+Added Pin To Net: NetName=NetJ10_1 Pin=U?-21
+Added Pin To Net: NetName=24 V Pin=U?-22
+Added Pin To Net: NetName=24 V Pin=U?-22
+Added Pin To Net: NetName=24 V Pin=U?-22
+Added Pin To Net: NetName=24 V Pin=U?-22
+Added Pin To Net: NetName=24 V Pin=U?-22
+Added Pin To Net: NetName=24 V Pin=U?-22
+Added Pin To Net: NetName=NetJ4_2 Pin=U?-22
+Added Pin To Net: NetName=NetJ4_3 Pin=U?-23
+Added Pin To Net: NetName=NetR2_1 Pin=U?-23
+Added Pin To Net: NetName=NetR9_1 Pin=U?-23
+Added Pin To Net: NetName=NetR11_1 Pin=U?-23
+Added Pin To Net: NetName=NetR17_1 Pin=U?-23
+Added Pin To Net: NetName=NetR20_1 Pin=U?-23
+Added Pin To Net: NetName=NetR21_1 Pin=U?-23
+Added Pin To Net: NetName=NetJ2_1 Pin=U?-24
+Added Pin To Net: NetName=NetJ5_2 Pin=U?-24
+Added Pin To Net: NetName=NetJ6_1 Pin=U?-24
+Added Pin To Net: NetName=NetJ7_1 Pin=U?-24
+Added Pin To Net: NetName=NetJ8_2 Pin=U?-24
+Added Pin To Net: NetName=NetJ9_2 Pin=U?-24
+Added Pin To Net: NetName=NetJ10_2 Pin=U?-24
+Added Pin To Net: NetName=NetJ2_2 Pin=U?-25
+Added Pin To Net: NetName=NetJ2_3 Pin=U?-26
+Added Pin To Net: NetName=NetJ5_3 Pin=U?-26
+Added Pin To Net: NetName=NetJ6_3 Pin=U?-26
+Added Pin To Net: NetName=NetJ7_3 Pin=U?-26
+Added Pin To Net: NetName=NetJ8_3 Pin=U?-26
+Added Pin To Net: NetName=NetJ9_3 Pin=U?-26
+Added Pin To Net: NetName=NetJ10_3 Pin=U?-26
+Added Pin To Net: NetName=NetR3_1 Pin=U?-27
+Added Pin To Net: NetName=NetR12_1 Pin=U?-27
+Added Pin To Net: NetName=NetR13_1 Pin=U?-27
+Added Pin To Net: NetName=NetR22_1 Pin=U?-27
+Added Pin To Net: NetName=NetR23_1 Pin=U?-27
+Added Pin To Net: NetName=NetR24_1 Pin=U?-27
+Added Pin To Net: NetName=24 V Pin=U?-28
+Added Pin To Net: NetName=24 V Pin=U?-28
+Added Pin To Net: NetName=24 V Pin=U?-28
+Added Pin To Net: NetName=24 V Pin=U?-28
+Added Pin To Net: NetName=24 V Pin=U?-28
+Added Pin To Net: NetName=24 V Pin=U?-28
+Added Pin To Net: NetName=NetR1_2 Pin=U?-30
+Added Pin To Net: NetName=NetR2_2 Pin=U?-31
+Add Net: Net with name "NetR2_1" already exists
+Added Pin To Net: NetName=NetU?_1 Pin=U?-1
+Added Pin To Net: NetName=NetU?_1 Pin=U?-16
+Added Net: Name=NetU?_1
+Added Pin To Net: NetName=NetU?_2 Pin=U?-2
+Added Pin To Net: NetName=NetU?_2 Pin=U?-19
+Added Net: Name=NetU?_2
+Added Pin To Net: NetName=NetU?_9 Pin=U?-9
+Added Pin To Net: NetName=NetU?_9 Pin=U?-16
+Added Net: Name=NetU?_9
+Added Pin To Net: NetName=NetU?_10 Pin=U?-10
+Added Pin To Net: NetName=NetU?_10 Pin=U?-16
+Added Net: Name=NetU?_10
+Added Pin To Net: NetName=NetU?_11 Pin=U?-11
+Added Pin To Net: NetName=NetU?_11 Pin=U?-19
+Added Net: Name=NetU?_11
+Added Pin To Net: NetName=NetU?_12 Pin=U?-12
+Added Pin To Net: NetName=NetU?_12 Pin=U?-19
+Added Net: Name=NetU?_12
+Added Pin To Net: NetName=NetU?_13 Pin=U?-13
+Added Pin To Net: NetName=NetU?_13 Pin=U?-16
+Added Net: Name=NetU?_13
+Added Pin To Net: NetName=NetU?_14 Pin=U?-14
+Added Pin To Net: NetName=NetU?_14 Pin=U?-19
+Added Net: Name=NetU?_14
+Added Pin To Net: NetName=NetU?_15 Pin=U?-15
+Added Pin To Net: NetName=NetU?_15 Pin=U?-16
+Added Net: Name=NetU?_15
+Added Pin To Net: NetName=NetU?_16 Pin=U?-16
+Added Pin To Net: NetName=NetU?_16 Pin=U?-16
+Added Net: Name=NetU?_16
+Added Pin To Net: NetName=NetU?_17 Pin=U?-17
+Added Pin To Net: NetName=NetU?_17 Pin=U?-19
+Added Net: Name=NetU?_17
+Added Pin To Net: NetName=NetU?_19 Pin=U?-19
+Added Pin To Net: NetName=NetU?_19 Pin=U?-32
+Added Net: Name=NetU?_19
+Add Class Member: Failed to add class member : Component D1 Light-Emitting Diode
+Add Class Member: Failed to add class member : Component D2 Light-Emitting Diode
+Add Class Member: Failed to add class member : Component D3 Light-Emitting Diode
+Added Member To Class: ClassName=Controller Member=Component MH1 Mounting Hole_1
+Added Member To Class: ClassName=Controller Member=Component MH1 Mounting Hole_1
+Added Member To Class: ClassName=Controller Member=Component MH1 Mounting Hole_1
+Added Member To Class: ClassName=Controller Member=Component U? ATMEGA328P-AU
+Added Member To Class: ClassName=Drivers Member=Component U? TMC2209-LA-T
+Added Member To Class: ClassName=Drivers Member=Component U? TMC2209-LA-T
+Added Member To Class: ClassName=Drivers Member=Component U? TMC2209-LA-T
+Added Member To Class: ClassName=Drivers Member=Component U? TMC2209-LA-T
+Added Member To Class: ClassName=Drivers Member=Component U? TMC2209-LA-T
+Added Member To Class: ClassName=Drivers Member=Component U? TMC2209-LA-T

@@ -49,6 +49,40 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
+DocumentPath=6_Axis_Robot_Arm\6_Axis_Robot_Arm.SchLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=LJYKYNEN
+
+[Document2]
+DocumentPath=6_Axis_Robot_Arm\6_Axis_Robot_Arm.PcbLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=KOVGBIDS
+
+[Document3]
 DocumentPath=Controller.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -65,7 +99,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=ZGKHFMAR
 
-[Document2]
+[Document4]
 DocumentPath=..\..\..\..\Altium Libraries\6_Axis_Robot_Arm\Project Outputs for 6_Axis_Robot_Arm\6_Axis_Robot_Arm.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -82,7 +116,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document3]
+[Document5]
 DocumentPath=Buck.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -99,7 +133,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=YMDSLHYP
 
-[Document4]
+[Document6]
 DocumentPath=..\..\..\..\..\Public\Documents\Altium\Drivers.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -116,7 +150,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=WKOLQZTL
 
-[Document5]
+[Document7]
 DocumentPath=FTDI.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -133,7 +167,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=DLBEJSZG
 
-[Document6]
+[Document8]
 DocumentPath=PCB Layout.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -150,7 +184,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=NPJSIEKJ
 
-[Document7]
+[Document9]
 DocumentPath=Schlib1.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -167,7 +201,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=BASYXWLO
 
-[Document8]
+[Document10]
 DocumentPath=PcbLib1.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1

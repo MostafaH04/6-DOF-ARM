@@ -1,0 +1,39 @@
+Removed Member From Class: ClassName=Controller Member=U?
+Change Component Designator: OldDesignator=U? NewDesignator=U2
+Change Component Designator: OldDesignator=U? NewDesignator=U3
+Change Component Designator: OldDesignator=U? NewDesignator=U4
+Change Component Designator: OldDesignator=U? NewDesignator=U5
+Change Component Designator: OldDesignator=U? NewDesignator=U6
+Change Component Designator: OldDesignator=U? NewDesignator=U7
+Change Component Designator: OldDesignator=U? NewDesignator=U9
+Add Pin To Net: Unknown Pin: Pin D1-1
+Add Pin To Net: Unknown Pin: Pin D1-2
+Add Pin To Net: Unknown Pin: Pin D2-1
+Add Pin To Net: Unknown Pin: Pin D2-2
+Add Pin To Net: Unknown Pin: Pin D3-1
+Add Pin To Net: Unknown Pin: Pin D3-2
+Change Net Name : Old Net Name=NetU?_1 New Net Name=NetU2_1
+Change Net Name : Old Net Name=NetU?_2 New Net Name=NetU2_2
+Change Net Name : Old Net Name=NetU?_9 New Net Name=NetU2_9
+Change Net Name : Old Net Name=NetU?_10 New Net Name=NetU2_10
+Change Net Name : Old Net Name=NetU?_11 New Net Name=NetU2_11
+Change Net Name : Old Net Name=NetU?_12 New Net Name=NetU2_12
+Change Net Name : Old Net Name=NetU?_13 New Net Name=NetU2_13
+Change Net Name : Old Net Name=NetU?_14 New Net Name=NetU2_14
+Change Net Name : Old Net Name=NetU?_15 New Net Name=NetU2_15
+Change Net Name : Old Net Name=NetU?_16 New Net Name=NetU2_16
+Change Net Name : Old Net Name=NetU?_17 New Net Name=NetU2_17
+Change Net Name : Old Net Name=NetU?_19 New Net Name=NetU2_32
+Add Net: Net with name "NetR2_1" already exists
+Add Class Member: Failed to add class member : Component D1 Light-Emitting Diode
+Add Class Member: Failed to add class member : Component D2 Light-Emitting Diode
+Add Class Member: Failed to add class member : Component D3 Light-Emitting Diode
+Added Member To Class: ClassName=Controller Member=Component MH1 Mounting Hole_1
+Added Member To Class: ClassName=Controller Member=Component MH1 Mounting Hole_1
+Added Member To Class: ClassName=Controller Member=Component MH1 Mounting Hole_1
+Added Member To Class: ClassName=Controller Member=Component U2 ATMEGA328P-AU
+Added Member To Class: ClassName=Drivers Member=Component U3 TMC2209-LA-T
+Added Member To Class: ClassName=Drivers Member=Component U4 TMC2209-LA-T
+Added Member To Class: ClassName=Drivers Member=Component U5 TMC2209-LA-T
+Added Member To Class: ClassName=Drivers Member=Component U6 TMC2209-LA-T
+Added Member To Class: ClassName=Drivers Member=Component U7 TMC2209-LA-T
