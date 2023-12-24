@@ -30,39 +30,39 @@ AccelStepper stepper6(AccelStepper::DRIVER, STEPPER6_STEP_PIN, STEPPER6_DIR_PIN)
 MultiStepper steppers;
 
 void setup() {
-  Serial.begin(9600);
+    Serial.begin(9600);
 
-  stepper1.setMaxSpeed(100);
-  stepper2.setMaxSpeed(100);
-  stepper3.setMaxSpeed(100);
-  stepper4.setMaxSpeed(100);
-  stepper5.setMaxSpeed(100);
-  stepper6.setMaxSpeed(100);
-  
-  steppers.addStepper(stepper1);
-  steppers.addStepper(stepper2);
-  steppers.addStepper(stepper3);
-  steppers.addStepper(stepper4);
-  steppers.addStepper(stepper5);
-  steppers.addStepper(stepper6);
+    stepper1.setMaxSpeed(100);
+    stepper2.setMaxSpeed(100);
+    stepper3.setMaxSpeed(100);
+    stepper4.setMaxSpeed(100);
+    stepper5.setMaxSpeed(100);
+    stepper6.setMaxSpeed(100);
 
-  pinMode(A0, INPUT);
-  pinMode(A1, INPUT);
-  pinMode(A2, INPUT);
-  pinMode(A3, INPUT);
-  pinMode(A4, INPUT);
-  pinMode(A5, INPUT);
+    steppers.addStepper(stepper1);
+    steppers.addStepper(stepper2);
+    steppers.addStepper(stepper3);
+    steppers.addStepper(stepper4);
+    steppers.addStepper(stepper5);
+    steppers.addStepper(stepper6);
+
+    pinMode(A0, INPUT);
+    pinMode(A1, INPUT);
+    pinMode(A2, INPUT);
+    pinMode(A3, INPUT);
+    pinMode(A4, INPUT);
+    pinMode(A5, INPUT);
 }
 
 void loop() {
-  Positions positions;
-  long angle0 = (long)map(analogRead(A0), 0, 1023, 0, 360);
-  long angle1 = (long)map(analogRead(A1), 0, 1023, 0, 360);
-  long angle2 = (long)map(analogRead(A2), 0, 1023, 0, 360);
-  long angle3 = (long)map(analogRead(A3), 0, 1023, 0, 360);
-  long angle4 = (long)map(analogRead(A4), 0, 1023, 0, 360);
-  long angle5 = (long)map(analogRead(A5), 0, 1023, 0, 360);
-  positions.setPositionsAngles(angle0, angle1, angle2, angle3, angle4, angle5);
-  steppers.moveTo(positions.getPositions());
-  steppers.run();
+    Positions positions;
+    long angle0 = (long)map(analogRead(A0), 0, 1023, 0, 360);
+    long angle1 = (long)map(analogRead(A1), 0, 1023, 0, 360);
+    long angle2 = (long)map(analogRead(A2), 0, 1023, 0, 360);
+    long angle3 = (long)map(analogRead(A3), 0, 1023, 0, 360);
+    long angle4 = (long)map(analogRead(A4), 0, 1023, 0, 360);
+    long angle5 = (long)map(analogRead(A5), 0, 1023, 0, 360);
+    positions.setPositionsAngles(angle0, angle1, angle2, angle3, angle4, angle5);
+    steppers.moveTo(positions.getPositions());
+    steppers.run();
 }
