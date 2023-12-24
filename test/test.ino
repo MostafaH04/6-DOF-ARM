@@ -1,6 +1,6 @@
 #include <AccelStepper.h>
 #include <MultiStepper.h>
-#include "positions.cpp"
+#include "positions.h"
 
 #define STEPPER1_DIR_PIN 2
 #define STEPPER1_STEP_PIN 3
