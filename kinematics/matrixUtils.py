@@ -54,7 +54,7 @@ class MatrixUtils:
         pass
 
 
-    def pseudo_inverse(self, mat: List[List[float]], A_t: List[List[float]], AA_t: List[List[float]], A_tA: List[List[float]], result: List[List[float]]) -> List[List[float]]:
+    def pseudo_inverse(self, mat: List[List[float]], A_t: List[List[float]], AA_t: List[List[float]], A_tA: List[List[float]], r: int, c: int) -> List[List[float]]:
         pass
 
 
@@ -83,7 +83,7 @@ class MatrixUtils:
         return trn_mat
     
     
-    def trm_mat_inverse(self, mat: List[List[float]]) -> List[List[float]]:
+    def trn_mat_inverse(self, mat: List[List[float]]) -> List[List[float]]:
         rot_mat = self.get_rot_mat(mat)
         pos_vec = self.get_pos_vec(mat)
 

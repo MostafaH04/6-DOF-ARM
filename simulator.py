@@ -12,7 +12,6 @@ pb.setRealTimeSimulation(0)
 robot = None
 try:
   robot = load_robot_description("ur10", useFixedBase=1)
-  print("MY RROBOT IS ", robot)
 except ModuleNotFoundError:
   robot = load_robot_description("ur10_description")
 
