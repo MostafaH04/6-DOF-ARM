@@ -91,7 +91,7 @@ class MatrixUtils:
     return A
 
 
-  def pseudo_inverse(self, mat: List[List[float]], A_t: List[List[float]], AA_t: List[List[float]], A_tA: List[List[float]], r: int, c: int) -> List[List[float]]:
+  def pseudo_inverse(self, mat: List[List[float]], r: int, c: int) -> List[List[float]]:
     A_t = self.transpose(mat, r, c)
     AA_t = self.mul_matrix(mat, A_t, r, c, c, r)
     A_tA = self.mul_matrix(A_t, mat, c, r, r, c)
@@ -307,13 +307,13 @@ class MatrixUtils:
       return result
 
   def add_matrix(self, mat1: List[List[float]], mat2: List[List[float]], r: int, c: int) -> List[List[float]]:
-    if (type(mat1) == list or type(mat2) == list):
+    if (type(mat1[0]) == list or type(mat2[0]) == list):
       return [[mat1[i][j] + mat2[i][j] for j in range(c)] for i in range(r)]
     return [mat1[i] + mat2[i] for i in range(c)]
 
 
   def sub_matrix(self, mat1: List[List[float]], mat2: List[List[float]], r: int, c: int) -> List[List[float]]:
-    if (type(mat1) == list or type(mat2) == list):
+    if (type(mat1[0]) == list or type(mat2[0]) == list):
       return [[mat1[i][j] - mat2[i][j] for j in range(c)] for i in range(r)]
     return [mat1[i] - mat2[i] for i in range(c)]
 
