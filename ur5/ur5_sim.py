@@ -16,7 +16,7 @@ def pos_orn_to_T(pos,orn):
 	
 
 
-urdf_name = "ur5/ur5.urdf"
+urdf_name = "./ur5/ur5.urdf"
 
 ## Modern Robotics setup
 MR=loadURDF(urdf_name)
