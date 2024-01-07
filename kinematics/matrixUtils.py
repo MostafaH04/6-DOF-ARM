@@ -300,7 +300,7 @@ class MatrixUtils:
   
 
   def vec_to_so3(self, vec: List[float]) -> List[List[float]]:
-    result = self.zero(3, 3)
+    result = [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
     result[0][0] = 0.0
     result[0][1] = -vec[2]
     result[0][2] = vec[1]
