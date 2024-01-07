@@ -263,21 +263,17 @@ class MatrixUtils:
     return self.norm(vec)
   
   
-  def add_scalar(self, mat: List[List[float]], s: float, r: int, c: int) -> List[List[float]]:
-    return [[mat[i][j] + s for j in range(c)] for i in range(r)]
+  def add_scalar(self, vec: List[float], s: float) -> List[float]:
+      return [x + s for x in vec]
 
+  def sub_scalar(self, vec: List[float], s: float) -> List[float]:
+      return [x - s for x in vec]
 
-  def sub_scalar(self, mat: List[List[float]], s: float, r: int, c: int) -> List[List[float]]:
-    return [[mat[i][j] - s for j in range(c)] for i in range(r)]
+  def mul_scalar(self, vec: List[float], s: float) -> List[float]:
+      return [x * s for x in vec]
 
-
-  def mul_scalar(self, mat: List[List[float]], s: float, r: int, c: int) -> List[List[float]]:
-    return [[mat[i][j] * s for j in range(c)] for i in range(r)]
-
-
-  def div_scalar(self, mat: List[List[float]], s: float, r: int, c: int) -> List[List[float]]:
-    return [[mat[i][j] / s for j in range(c)] for i in range(r)]
-
+  def div_scalar(self, vec: List[float], s: float) -> List[float]:
+      return [x / s for x in vec]
 
   def add_matrix(self, mat1: List[List[float]], mat2: List[List[float]], r: int, c: int) -> List[List[float]]:
     return [[mat1[i][j] + mat2[i][j] for j in range(c)] for i in range(r)]
