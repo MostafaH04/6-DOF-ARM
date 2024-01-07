@@ -344,10 +344,6 @@ class MatrixUtils:
     result[1][3] = vec[4]
     result[2][3] = vec[5]
 
-    for i in range(3):
-      result[3][i] = 0
-      result[i][3] = 0
-
     result[3][0] = 0
     result[3][1] = 0
     result[3][2] = 0
