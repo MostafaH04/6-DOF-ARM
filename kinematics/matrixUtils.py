@@ -91,9 +91,8 @@ class MatrixUtils:
     return A
 
 
-  def pseudo_inverse(self, mat: List[List[float]], r: int, c: int) -> List[List[float]]:
+  def pseudo_inverse(self, mat: List[List[float]], A_t: List[List[float]], AA_t: List[List[float]], A_tA: List[List[float]], r: int, c: int) -> List[List[float]]:
     A_t = self.transpose(mat, r, c)
-
     AA_t = self.mul_matrix(mat, A_t, r, c, c, r)
     A_tA = self.mul_matrix(A_t, mat, c, r, r, c)
 
@@ -295,25 +294,28 @@ class MatrixUtils:
     return mat
 
   def div_scalar(self, mat: List[List[float]], s: float, r: int, c: int) -> List[List[float]]:
-    result = [[0] * c for _ in range(r)]
-    if (type(mat[0]) == list):
-      for i in range(r):
-        for j in range(c):
-          result[i][j] = mat[i][j]/s
+      result = [[0] * c for _ in range(r)]
+      if (type(mat[0]) == list):
+        for i in range(r):
+          for j in range(c):
+            result[i][j] = mat[i][j] / s
+        return result
+      
+      result = [0] * c
+      for i in range(c):
+        result[i] = mat[i] / s
       return result
-    
-    result = [0] * c
-    for i in range(c):
-      result[i] = mat[i]/s
-    return result
 
   def add_matrix(self, mat1: List[List[float]], mat2: List[List[float]], r: int, c: int) -> List[List[float]]:
-    return [[mat1[i][j] + mat2[i][j] for j in range(c)] for i in range(r)]
+    if (type(mat1) == list or type(mat2) == list):
+      return [[mat1[i][j] + mat2[i][j] for j in range(c)] for i in range(r)]
+    return [mat1[i] + mat2[i] for i in range(c)]
 
 
   def sub_matrix(self, mat1: List[List[float]], mat2: List[List[float]], r: int, c: int) -> List[List[float]]:
-    return [[mat1[i][j] - mat2[i][j] for j in range(c)] for i in range(r)]
-
+    if (type(mat1) == list or type(mat2) == list):
+      return [[mat1[i][j] - mat2[i][j] for j in range(c)] for i in range(r)]
+    return [mat1[i] - mat2[i] for i in range(c)]
 
   def mul_matrix(self, mat1: List[List[float]], mat2: List[List[float]], r1: int, c1: int, r2: int, c2: int) -> List[List[float]]:
     result = [[0.0] * c2 for i in range(r1)]
