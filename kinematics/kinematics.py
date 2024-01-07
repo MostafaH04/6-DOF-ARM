@@ -31,7 +31,7 @@ class Kinematics:
         result[i][j] - self.initial_end_effector_pose[i][j]
     
     for i in range(self.num_joints-1, -1, -1):
-      vec6 = self.mat_utils.mul_scalar(self.joint_screw_axes[i], joint_angles[i], 1, 6)
+      vec6 = self.mat_utils.mul_scalar(self.joint_screw_axes[i], joint_angles[i])
       se3 = self.mat_utils.vec_to_se3(vec6)
       exp6 = self.mat_utils.exp6(se3)
       result = self.mat_utils.mul_matrix(exp6, result, 4, 4, 4, 4)
@@ -109,7 +109,7 @@ class Kinematics:
         jacobian[i][j] = self.joint_screw_axes[j][i]
     
     for i in range(1, self.num_joints):
-      vec6 = self.mat_utils.mul_scalar(self.joint_screw_axes[i-1], joint_angles[i-1], 1, 6)
+      vec6 = self.mat_utils.mul_scalar(self.joint_screw_axes[i-1], joint_angles[i-1])
       se3 = self.mat_utils.vec_to_se3(vec6)
       exp6 = self.mat_utils.exp6(se3)
       transform = self.mat_utils.mul_matrix(transform, exp6, 4, 4, 4, 4)
