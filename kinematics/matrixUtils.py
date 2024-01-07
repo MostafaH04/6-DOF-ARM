@@ -262,29 +262,49 @@ class MatrixUtils:
   
   
   def add_scalar(self, mat: List[List[float]], s: float, r: int, c: int) -> List[List[float]]: 
-    for i in range(r):
-      for j in range(c):
-        mat[i][j] += s
+    if (type(mat[0]) == list):
+      for i in range(r):
+        for j in range(c):
+          mat[i][j] += s
+      return mat
+
+    for i in range(c):
+      mat[i] += s
     return mat
 
 
   def sub_scalar(self, mat: List[List[float]], s: float, r: int, c: int) -> List[List[float]]:
-    for i in range(r):
-      for j in range(c):
-        mat[i][j] -= s
+    if (type(mat[0]) == list):
+      for i in range(r):
+        for j in range(c):
+          mat[i][j] -= s
+      return mat
+
+    for i in range(c):
+      mat[i] -= s
     return mat
 
 
   def mul_scalar(self, mat: List[List[float]], s: float, r: int, c: int) -> List[List[float]]:
-    for i in range(r):
-      for j in range(c):
-        mat[i][j] *= s
+    if (type(mat[0]) == list):
+      for i in range(r):
+        for j in range(c):
+          mat[i][j] *= s
+      return mat
+
+    for i in range(c):
+      mat[i] *= s
     return mat
 
   def div_scalar(self, mat: List[List[float]], s: float, r: int, c: int) -> List[List[float]]:
-    for i in range(r):
-      for j in range(c):
-        mat[i][j] /= s
+    if (type(mat[0]) == list):
+      for i in range(r):
+        for j in range(c):
+          mat[i][j] /= s
+      return mat
+    
+    for i in range(c):
+      mat[i] /= s
     return mat
 
   def add_matrix(self, mat1: List[List[float]], mat2: List[List[float]], r: int, c: int) -> List[List[float]]:
