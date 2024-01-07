@@ -71,7 +71,7 @@ class Kinematics:
 
     while (error and i < max_iterations):
       jacobian = self.jacobian(joint_angles)
-      pinv = self.mat_utils.pseudo_inverse(jacobian, A_t, AA_t, A_tA, 6, self.num_joints)
+      pinv = self.mat_utils.pseudo_inverse(jacobian, 6, self.num_joints)
       pinv_Vs = self.mat_utils.mul_vector(pinv, Vs, self.num_joints, 6)
       joint_angles = self.mat_utils.add_matrix(joint_angles, pinv_Vs, 1, self.num_joints)
 

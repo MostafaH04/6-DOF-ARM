@@ -91,11 +91,11 @@ class MatrixUtils:
     return A
 
 
-  def pseudo_inverse(self, mat: List[List[float]], A_t: List[List[float]], AA_t: List[List[float]], A_tA: List[List[float]], r: int, c: int) -> List[List[float]]:
-    mat_t = self.transpose(mat, r, c, A_t)
+  def pseudo_inverse(self, mat: List[List[float]], r: int, c: int) -> List[List[float]]:
+    A_t = self.transpose(mat, r, c)
 
-    AA_t = self.mul_matrix(mat_t, A_t, r, c, c, r)
-    A_tA = self.mul_matrix(A_t, mat_t, c, r, r, c)
+    AA_t = self.mul_matrix(mat, A_t, r, c, c, r)
+    A_tA = self.mul_matrix(A_t, mat, c, r, r, c)
 
     AA_t_inv = self.inverse(AA_t, r)
     A_tA_inv = self.inverse(A_tA, c)
@@ -191,9 +191,7 @@ class MatrixUtils:
       return self.create_trn_mat(self.identity(3), pos_vec)
     else:
       theta = self.get_angle(w)
-      print("initial: ", rot_mat)
       w_mat = self.div_scalar(rot_mat, theta, 3, 3)
-      print("final: ", rot_mat)
       exp3_rot = self.exp3(rot_mat)
       w_mat_sq = self.mul_matrix(w_mat, w_mat, 3, 3, 3, 3)
 
@@ -301,7 +299,7 @@ class MatrixUtils:
     if (type(mat[0]) == list):
       for i in range(r):
         for j in range(c):
-          result[i][j] /= s
+          result[i][j] = mat[i][j]/s
       return result
     
     result = [0] * c
