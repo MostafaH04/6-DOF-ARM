@@ -124,11 +124,9 @@ class MatrixUtils:
     for i in range(3):
       for j in range(3):
         trn_mat[i][j] = rot_mat[i][j]
-
-    for i in range(3):
       trn_mat[i][3] = pos_vec[i]
 
-    trn_mat[3][3] = 1.0
+    trn_mat[3][3] = 1
 
     return trn_mat
   

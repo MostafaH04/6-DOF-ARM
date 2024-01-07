@@ -28,7 +28,7 @@ class Kinematics:
 
     for i in range(4):
       for j in range(4):
-        result[i][j] - self.initial_end_effector_pose[i][j]
+        result[i][j] = self.initial_end_effector_pose[i][j]
     
     for i in range(self.num_joints-1, -1, -1):
       vec6 = self.mat_utils.mul_scalar(self.joint_screw_axes[i], joint_angles[i], 1, 6)
