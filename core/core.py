@@ -572,13 +572,13 @@ def FKinBody(M, Blist, thetalist):
     Example Input:
         M = np.array([[-1, 0,  0, 0],
                       [ 0, 1,  0, 6],
-                      [ 0, 0, -1, 2],
+`                      [ 0, 0, -1, 2],
                       [ 0, 0,  0, 1]])
         Blist = np.array([[0, 0, -1, 2, 0,   0],
                           [0, 0,  0, 0, 1,   0],
                           [0, 0,  1, 0, 0, 0.1]]).T
         thetalist = np.array([np.pi / 2.0, 3, np.pi])
-    Output:
+    Output:`
         np.array([[0, 1,  0,         -5],
                   [1, 0,  0,          4],
                   [0, 0, -1, 1.68584073],
