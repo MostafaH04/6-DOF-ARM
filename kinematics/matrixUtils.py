@@ -313,11 +313,14 @@ class MatrixUtils:
     result[2][1] = vec[0]
     result[2][2] = 0.0
 
+    return result
+
   def so3_to_vec(self, rot_mat: List[List[float]]) -> List[float]:
     result = [0.0] * 3
     result[0] = rot_mat[2][1]
     result[1] = rot_mat[0][2]
     result[2] = rot_mat[1][0]
+    return result
 
   def se3_to_vec(self, trn_mat: List[List[float]]) ->  List[float]:
     result = [0.0] * 6
@@ -327,6 +330,7 @@ class MatrixUtils:
     result[3] = trn_mat[0][3]
     result[4] = trn_mat[1][3]
     result[5] = trn_mat[2][3]
+    return result
 
   def vec_to_se3(self, vec: List[float]) -> List[List[float]]:
     v = [vec[0], vec[1], vec[2]]
@@ -350,3 +354,5 @@ class MatrixUtils:
     result[3][1] = 0
     result[3][2] = 0
     result[3][3] = 0
+
+    return result
