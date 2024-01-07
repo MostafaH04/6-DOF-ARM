@@ -191,7 +191,9 @@ class MatrixUtils:
       return self.create_trn_mat(self.identity(3), pos_vec)
     else:
       theta = self.get_angle(w)
+      print("initial: ", rot_mat)
       w_mat = self.div_scalar(rot_mat, theta, 3, 3)
+      print("final: ", rot_mat)
       exp3_rot = self.exp3(rot_mat)
       w_mat_sq = self.mul_matrix(w_mat, w_mat, 3, 3, 3, 3)
 
@@ -295,15 +297,17 @@ class MatrixUtils:
     return mat
 
   def div_scalar(self, mat: List[List[float]], s: float, r: int, c: int) -> List[List[float]]:
+    result = [[0] * c for _ in range(r)]
     if (type(mat[0]) == list):
       for i in range(r):
         for j in range(c):
-          mat[i][j] /= s
-      return mat
+          result[i][j] /= s
+      return result
     
+    result = [0] * c
     for i in range(c):
-      mat[i] /= s
-    return mat
+      result[i] = mat[i]/s
+    return result
 
   def add_matrix(self, mat1: List[List[float]], mat2: List[List[float]], r: int, c: int) -> List[List[float]]:
     return [[mat1[i][j] + mat2[i][j] for j in range(c)] for i in range(r)]
