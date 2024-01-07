@@ -1,7 +1,7 @@
 import numpy as np
 import pybullet as pb
 from robot_descriptions.loaders.pybullet import load_robot_description
-
+from mr_urdf_loader import loadURDF
 #Making an instance of a physical client
 client = pb.connect(pb.GUI)
 
