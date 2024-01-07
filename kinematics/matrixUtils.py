@@ -220,7 +220,7 @@ class MatrixUtils:
       w = [mat[2][1], mat[0][2], mat[1][0]]
       s = 1.0 / math.sqrt(2.0 * (1 + mat[2][2]))
       w = self.mul_scalar(w, s, 1, 3)
-      w = self.mul_scalar(w, PI, 1, 3)
+      w = self.mul_scalar(w, math.pi, 1, 3)
       return self.vec_to_so3(w)
     else:
       mat_t = self.transpose(mat, 3, 3)
@@ -354,6 +354,3 @@ class MatrixUtils:
     result[3][1] = 0
     result[3][2] = 0
     result[3][3] = 0
-
-  
-  
