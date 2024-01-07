@@ -32,9 +32,7 @@ class MatrixUtils:
   
 
   def zero(self, rows: int, cols: int) -> List[List[float]]:
-    mat = [0.0] * (rows * cols)
-    return mat
-
+    return [[0] * cols for _ in range(rows)]
 
   def transpose(self, mat: List[List[float]], r: int, c: int) ->  List[List[float]]:
     result = [[0.0] * r for _ in range(c)]
