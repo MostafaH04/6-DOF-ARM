@@ -76,6 +76,7 @@ class Kinematics:
       joint_angles = self.mat_utils.add_matrix(joint_angles, pinv_Vs, 1, self.num_joints)
 
       i+= 1
+      # print(joint_angles)
       
       Tsb = self.forward(joint_angles)
       Tsb_inv = self.mat_utils.trn_mat_inverse(Tsb)
@@ -118,5 +119,4 @@ class Kinematics:
       jacobian_column = self.mat_utils.mul_vector(adj, self.joint_screw_axes[i], 6, 6)
       for j in range(6):
         jacobian[j][i] = jacobian_column[j]
-    
     return jacobian

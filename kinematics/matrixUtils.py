@@ -18,7 +18,11 @@ class MatrixUtils:
   def copy_matrix(self, mat: List[List[float]], r: int, c: int) -> List[List[float]]:
     result = mat
     return result
+  
 
+  def convert_to_radians(self, number):
+    angle_in_radians = number % (2 * math.pi)
+    return angle_in_radians
 
   def identity(self, n: int) -> List[List[float]]:
     mat = [[0.0] * n for _ in range(n)]
@@ -251,7 +255,13 @@ class MatrixUtils:
 
 
   def norm(self, vec: List[float]) -> float:
-    return math.sqrt(sum(x**2 for x in vec))
+    try:
+      return math.sqrt(sum(x**2 for x in vec))
+    except OverflowError:
+      # print(vec)
+      # print(self.convert_to_radians(vec[2]))
+      # return self.convert_to_radians(vec[2])
+      return 0.0
   
   # ???
   def get_angle(self, vec: List[float]) -> float:
