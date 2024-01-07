@@ -31,7 +31,7 @@ class MatrixUtils:
     return mat
   
 
-  def zero(rows: int, cols: int) -> List[List[float]]:
+  def zero(self, rows: int, cols: int) -> List[List[float]]:
     mat = [0.0] * (rows * cols)
     return mat
 
