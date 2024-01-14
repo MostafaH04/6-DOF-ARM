@@ -11,7 +11,7 @@
         <mesh filename="visual/Base.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="LightGrey">
-        <color rgba="0.7 0.7 0.7 1.0"/>
+        
       </material>
       <origin rpy="0 3.14159 0" xyz="0.0 0.0 0.0"/>
     </visual>
@@ -40,7 +40,7 @@
         <mesh filename="visual/shoulder.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="LightGrey">
-        <color rgba="0.7 0.7 0.7 1.0"/>
+        
       </material>
       <origin rpy="0 3.14159 -0.122173" xyz="0.0 0.0 0.0"/>
     </visual>
@@ -70,7 +70,7 @@
         <mesh filename="visual/upperarm.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="LightGrey">
-        <color rgba="0.7 0.7 0.7 1.0"/>
+        
       </material>
       <origin rpy="1.57079 0 0" xyz="0.045912 0 0"/>
     </visual>
@@ -100,7 +100,7 @@
         <mesh filename="visual/forearm.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="LightGrey">
-        <color rgba="0.7 0.7 0.7 1.0"/>
+        
       </material>
       <origin rpy="-1.57079 0 0" xyz="0.045912 0 0"/>
     </visual>
@@ -130,7 +130,7 @@
         <mesh filename="visual/wrist1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="LightGrey">
-        <color rgba="0.7 0.7 0.7 1.0"/>
+        
       </material>
       <origin rpy="1.57079 0 0" xyz="0.0995 -0.016 0.03"/>
     </visual>
@@ -160,7 +160,7 @@
         <mesh filename="visual/wrist2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="LightGrey">
-        <color rgba="0.7 0.7 0.7 1.0"/>
+        
       </material>
       <origin rpy="0 -1.57 0" xyz="0 0.03 0.048"/>
     </visual>
@@ -190,7 +190,7 @@
         <mesh filename="visual/wrist3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="LightGrey">
-        <color rgba="0.7 0.7 0.7 1.0"/>
+        
       </material>
       <origin rpy="0 1.57 0" xyz="0.046 0.03 0"/>
     </visual>
