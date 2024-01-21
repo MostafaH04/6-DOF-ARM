@@ -15,4 +15,5 @@ kin.add_initial_end_effector_pose([[-1, 0,  0, 0],
                                   [0, 0,  0, 1]])
 
 joint_angles = [math.pi/2.0, 3, math.pi]
-mat.print_matrix(kin.forward(joint_angles), 4, 4, "Transform")
+transform = kin.forward(joint_angles)
+# print(transform)
