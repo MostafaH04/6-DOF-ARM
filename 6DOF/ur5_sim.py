@@ -14,9 +14,6 @@ def pos_orn_to_T(pos,orn):
 	T[0:3,0:3] = np.reshape(p.getMatrixFromQuaternion(orn),(3,3))
 	return T
 
-# hi
-	
-
 
 urdf_name = "./6DOF/6DOF.urdf"
 
