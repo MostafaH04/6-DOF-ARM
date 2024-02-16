@@ -13,6 +13,8 @@ def pos_orn_to_T(pos,orn):
 	T[0:3,3] = np.array(pos).T
 	T[0:3,0:3] = np.reshape(p.getMatrixFromQuaternion(orn),(3,3))
 	return T
+
+# hi
 	
 
 
