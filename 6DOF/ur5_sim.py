@@ -88,10 +88,18 @@ while p.isConnected():
 	print("=============mr_ID=============")
 	print(mr_ID)
 	
-	#set torques
-	for i in range(0,actuated_joints_num):		
-		p.setJointMotorControl2(robotID, i+1, p.TORQUE_CONTROL,force=pb_ID[i])
-		#p.setJointMotorControl2(robotID, i+1, p.TORQUE_CONTROL,force=pb_ID[i])
-				
+	# #set torques
+	# for i in range(0,actuated_joints_num):		
+	# 	p.setJointMotorControl2(robotID, i+1, p.VELOCITY_CONTROL, targetVelocity=1)
+	# 	#p.setJointMotorControl2(robotID, i+1, p.TORQUE_CONTROL,force=pb_ID[i])
+
+
+	array = [6.0, 0.0, 0.0, 0.0, 0.0, 0]
+	for i in range(len(array)):
+		p.setJointMotorControl2(robotID, i+1, p.VELOCITY_CONTROL, targetVelocity=array[i])
+		# p.setJointMotorControl2(robotID, i+1, p.POSITION_CONTROL, targetPosition=array[i])
+
+
+
 	p.stepSimulation()
 	time.sleep(timeStep)
