@@ -8,22 +8,22 @@ from modern_robotics import *
 import modern_robotics as mr
 import numpy as np
 from mr_urdf_loader import loadURDF
-def pos_orn_to_T(pos,orn):
-	T = np.eye(4)
-	T[0:3,3] = np.array(pos).T
-	T[0:3,0:3] = np.reshape(p.getMatrixFromQuaternion(orn),(3,3))
-	return T
+# def pos_orn_to_T(pos,orn):
+# 	T = np.eye(4)
+# 	T[0:3,3] = np.array(pos).T
+# 	T[0:3,0:3] = np.reshape(p.getMatrixFromQuaternion(orn),(3,3))
+# 	return T
 
 
 urdf_name = "./6DOF/6DOF.urdf"
 
 ## Modern Robotics setup
 MR=loadURDF(urdf_name)
-M  = MR["M"]
-Slist  = MR["Slist"]
-Mlist  = MR["Mlist"]
-Glist  = MR["Glist"]
-Blist  = MR["Blist"]
+# M  = MR["M"]
+# Slist  = MR["Slist"]
+# Mlist  = MR["Mlist"]
+# Glist  = MR["Glist"]
+# Blist  = MR["Blist"]
 actuated_joints_num = MR["actuated_joints_num"]
 ## pybullet setup
 p.connect(p.GUI)
@@ -36,70 +36,77 @@ p.resetBasePositionAndOrientation(robotID, [0, 0, 0], [0, 0, 0, 1])
 for i in range(0,numJoints):
 	p.setJointMotorControl2(robotID, i, p.VELOCITY_CONTROL, targetVelocity=0, force=0)
 for i in range(0,numJoints):
-	p.resetJointState(robotID, i, np.pi/3.0)
+	p.resetJointState(robotID, i, np.pi/2)
 		
 useRealTimeSim = False
 p.setRealTimeSimulation(useRealTimeSim)
 timeStep = 1/240.0;
 p.setTimeStep(timeStep)
 
-q = [0,0,0,0,0,0]
-q_dot = [0,0,0,0,0,0]
-q_ddot = [0,0,0,0,0,0]
-g = np.array([0,0,-9.8]).T
-Ftip = np.array([0,0,0,0,0,0]).T
+# q = [0,0,0,0,0,0]
+# q_dot = [0,0,0,0,0,0]
+# q_ddot = [0,0,0,0,0,0]
+# g = np.array([0,0,-9.8]).T
+# Ftip = np.array([0,0,0,0,0,0]).T
 
+A = math.pi/3
+B = math.pi/6
+C = math.pi/2
 
+positions = [
+	[-A, B, 0, C, 0.0, math.pi/2],
+	[0, A, 0, -C, 0.0, math.pi/2],
+	[A, 0, B, -C, 0.0, math.pi/2],
+	[0, -B, 0, A, 0.0, math.pi/2]
+]
+i = 0
+holder = 0
 while p.isConnected():
+	if holder > 50000:
+		i+= 1
+		holder = 0
+	holder += 1
 	# get Joint Staes
-	jointStates = np.array(p.getJointStates(robotID,[1,2,3,4,5,6]))
-	# get Link Staes	
-	linkState = np.array(p.getLinkState(robotID,7,1,1))
-	q = np.array(jointStates[:,0])
-	q_dot = np.array(jointStates[:,1])
+	# jointStates = np.array(p.getJointStates(robotID,[1,2,3,4,5,6]))
+	# # get Link Staes	
+	# linkState = np.array(p.getLinkState(robotID,7,1,1))
+	# q = np.array(jointStates[:,0])
+	# q_dot = np.array(jointStates[:,1])
 	
-	# Pybullet Forward Kinematics 
-	pb_Tsb = pos_orn_to_T(linkState[0],linkState[1])
-	# Modern Robotics Forward Kinematics 	
-	mr_Tsb = mr.FKinSpace(M,Slist,q)
-	mr_Tsb = mr.FKinBody(M,Blist,q)
+	# # Pybullet Forward Kinematics 
+	# pb_Tsb = pos_orn_to_T(linkState[0],linkState[1])
+	# # Modern Robotics Forward Kinematics 	
+	# mr_Tsb = mr.FKinSpace(M,Slist,q)
+	# mr_Tsb = mr.FKinBody(M,Blist,q)
 	
 	
-	# Pybullet Jacobian
-	#pb_J =  p.calculateJacobian(robotID,4,[0,0,0],[q[0],q[1],q[2]],[q_dot[0],q_dot[1],q_dot[2]],[0,0,0])
-	# Modern Robotics Jacobian	
-	mr_Jb= mr.JacobianBody(Blist, q)
-	mr_Js= mr.JacobianSpace(Slist, q)	
-	#mr_Ja = AnalyticJacobianBody(M,Blist, q)	# pb_j = mr_Ja	
+	# # Pybullet Jacobian
+	# #pb_J =  p.calculateJacobian(robotID,4,[0,0,0],[q[0],q[1],q[2]],[q_dot[0],q_dot[1],q_dot[2]],[0,0,0])
+	# # Modern Robotics Jacobian	
+	# mr_Jb= mr.JacobianBody(Blist, q)
+	# mr_Js= mr.JacobianSpace(Slist, q)	
+	# #mr_Ja = AnalyticJacobianBody(M,Blist, q)	# pb_j = mr_Ja	
 	
-	#pybullet InverseDynamics		
-	#print(q)
-	pb_ID= np.array(p.calculateInverseDynamics(robotID,[q[0],q[1],q[2],q[3],q[4],q[5] ],[q_dot[0],q_dot[1],q_dot[2],q_dot[3],q_dot[4],q_dot[5] ] ,[0,0,0,0,0,0] ))
-	#modern_robotics InverseDynamics
-	#print(Glist.shape)
-	mr_ID =mr.InverseDynamics(q, q_dot, q_ddot, g, Ftip, Mlist,  Glist, Slist)
+	# #pybullet InverseDynamics		
+	# #print(q)
+	# pb_ID= np.array(p.calculateInverseDynamics(robotID,[q[0],q[1],q[2],q[3],q[4],q[5] ],[q_dot[0],q_dot[1],q_dot[2],q_dot[3],q_dot[4],q_dot[5] ] ,[0,0,0,0,0,0] ))
+	# #modern_robotics InverseDynamics
+	# #print(Glist.shape)
+	# mr_ID =mr.InverseDynamics(q, q_dot, q_ddot, g, Ftip, Mlist,  Glist, Slist)
 	
-	print("=============pb_Tsb=============")
-	print(pb_Tsb)
-	print("=============mr_Tsb=============")
-	print(mr_Tsb)
-	print("=============pb_ID=============")
-	print(pb_ID)
-	print("=============mr_ID=============")
-	print(mr_ID)
+	# print("=============pb_Tsb=============")
+	# print(pb_Tsb)
+	# print("=============mr_Tsb=============")
+	# print(mr_Tsb)
+	# print("=============pb_ID=============")
+	# print(pb_ID)
+	# print("=============mr_ID=============")
+	# print(mr_ID)
 	
-	# #set torques
-	# for i in range(0,actuated_joints_num):		
-	# 	p.setJointMotorControl2(robotID, i+1, p.VELOCITY_CONTROL, targetVelocity=1)
-	# 	#p.setJointMotorControl2(robotID, i+1, p.TORQUE_CONTROL,force=pb_ID[i])
-
-
-	array = [6.0, 0.0, 0.0, 0.0, 0.0, 0]
-	for i in range(len(array)):
-		p.setJointMotorControl2(robotID, i+1, p.VELOCITY_CONTROL, targetVelocity=array[i])
-		# p.setJointMotorControl2(robotID, i+1, p.POSITION_CONTROL, targetPosition=array[i])
-
-
-
+	#set torques
+	for i in range(0,actuated_joints_num):		
+		p.setJointMotorControl2(robotID, i+1, p.TORQUE_CONTROL,force=pb_ID[i])
+		#p.setJointMotorControl2(robotID, i+1, p.TORQUE_CONTROL,force=pb_ID[i])
+				
 	p.stepSimulation()
 	time.sleep(timeStep)
