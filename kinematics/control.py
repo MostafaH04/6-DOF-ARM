@@ -1,6 +1,6 @@
 import serial
-import kinematics.kinematics as kinematics
-import kinematics.matrixUtils as matrixUtils
+import kinematics
+import matrixUtils
 
 kin = kinematics.Kinematics(3)
 mat_utils = matrixUtils.MatrixUtils()
