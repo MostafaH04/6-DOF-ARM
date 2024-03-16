@@ -42,9 +42,3 @@
 
 ### `motor-control/positions.cpp`, `motor-control/positions.h`
 - All functions working on Wokwi simulation ✅
-
-### `core/test_forward.py`
-- Fully functional ✅
-
-### `core/test_inverse.py`
-- Errors ❌
