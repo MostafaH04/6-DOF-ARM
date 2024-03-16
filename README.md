@@ -41,4 +41,4 @@
 - vec_to_se3 ✅
 
 ### `motor-control/positions.cpp`, `motor-control/positions.h`
-- All functions working on Wokwi simulation ✅
+- All functions working on simulation + integrated IRL testing ✅
