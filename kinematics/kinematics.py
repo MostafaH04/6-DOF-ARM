@@ -63,20 +63,40 @@ class Kinematics:
     adj = self.mat_utils.adjoint(Tsb)
     Vs = self.mat_utils.mul_vector(adj, vec6, 6, 6)
 
-    for i in range(3):
-      w[i] = Vs[i]
-      v[i] = Vs[i + 3]
+    for j in range(3):
+      w[j] = Vs[j]
+      v[j] = Vs[j + 3]
     
     error = (self.mat_utils.norm(w) > ew) or (self.mat_utils.norm(v) > ev)
+    print("Error: ", error)
 
     while (error and i < max_iterations):
-      jacobian = self.jacobian(joint_angles)
-      pinv = self.mat_utils.pseudo_inverse(jacobian, 6, self.num_joints)
-      pinv_Vs = self.mat_utils.mul_vector(pinv, Vs, self.num_joints, 6)
-      joint_angles = self.mat_utils.add_matrix(joint_angles, pinv_Vs, 1, self.num_joints)
+      i += 1
 
-      i+= 1
-      # print(joint_angles)
+      print("========================================")
+      print("Iteration:", i)
+    
+      jacobian = self.jacobian(joint_angles)
+      print("Jacobian: ")
+      print(jacobian[0])
+      print(jacobian[1])
+      print(jacobian[2])
+      print(jacobian[3])
+      print(jacobian[4])
+      print(jacobian[5])
+
+      pinv = self.mat_utils.pseudo_inverse(jacobian, 6, self.num_joints)
+      print("Pseudo Inverse: ")
+      print(pinv[0])
+      print(pinv[1])
+      print(pinv[2])
+
+      pinv_Vs = self.mat_utils.mul_vector(pinv, Vs, self.num_joints, 6)
+      print("Pseudo Inverse * Vs: ", pinv_Vs)
+
+      joint_angles = self.mat_utils.add_matrix(joint_angles, pinv_Vs, 1, self.num_joints)
+      print("Joint Angles: ")
+      print(joint_angles)
       
       Tsb = self.forward(joint_angles)
       Tsb_inv = self.mat_utils.trn_mat_inverse(Tsb)
@@ -86,12 +106,19 @@ class Kinematics:
       adj = self.mat_utils.adjoint(Tsb)
       Vs = self.mat_utils.mul_vector(adj, vec6, 6, 6)
 
-      for i in range(3):
-        w[i] = Vs[i]
-        v[i] = Vs[i + 3]
-      
-      error = (self.mat_utils.norm(w) > ew) or (self.mat_utils.norm(v) > ev)
+      for j in range(3):
+        w[j] = Vs[j]
+        v[j] = Vs[j + 3]
+
+      c1 = (self.mat_utils.norm(w) > ew)
+      c2 = (self.mat_utils.norm(v) > ev)
+      # error = (c1 or c2)
+
+      is_pinv_Vs_zero = (pinv_Vs == [0.0] * 6)
+      error = (c1 or c2) and not is_pinv_Vs_zero
+      print()
     
+    print("========================================")
     return joint_angles
 
   def jacobian(self, joint_angles: List[float]) -> List[List[float]]:
@@ -111,9 +138,22 @@ class Kinematics:
     
     for i in range(1, self.num_joints):
       vec6 = self.mat_utils.mul_scalar(self.joint_screw_axes[i-1], joint_angles[i-1], 1, 6)
+      print("vec6: ", vec6)
       se3 = self.mat_utils.vec_to_se3(vec6)
+
       exp6 = self.mat_utils.exp6(se3)
+      print("exp6: ")
+      print(exp6[0])
+      print(exp6[1])
+      print(exp6[2])
+      print(exp6[3])
+
       transform = self.mat_utils.mul_matrix(transform, exp6, 4, 4, 4, 4)
+      print("transform: ")
+      print(transform[0])
+      print(transform[1])
+      print(transform[2])
+      print(transform[3])
 
       adj = self.mat_utils.adjoint(transform)
       jacobian_column = self.mat_utils.mul_vector(adj, self.joint_screw_axes[i], 6, 6)

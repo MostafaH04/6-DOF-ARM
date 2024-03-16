@@ -16,4 +16,13 @@ kin.add_initial_end_effector_pose([[-1, 0,  0, 0],
 
 joint_angles = [math.pi/2.0, 3, math.pi]
 transform = kin.forward(joint_angles)
-# print(transform)
+print(transform[0])
+print(transform[1])
+print(transform[2])
+print(transform[3])
+
+# Desired Output:
+# [0.00    1.00    0.00    -5.00]
+# [1.00    -0.00   0.00    4.00]
+# [0.00    0.00    -1.00   1.69]
+# [0.00    0.00    0.00    1.00]

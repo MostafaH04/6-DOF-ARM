@@ -16,8 +16,7 @@ class MatrixUtils:
 
 
   def copy_matrix(self, mat: List[List[float]], r: int, c: int) -> List[List[float]]:
-    result = mat
-    return result
+    return [row[:] for row in mat[:r]]
   
 
   def convert_to_radians(self, number):
@@ -94,21 +93,26 @@ class MatrixUtils:
 
     return A
 
-
   def pseudo_inverse(self, mat: List[List[float]], r: int, c: int) -> List[List[float]]:
-    A_t = self.transpose(mat, r, c)
-    AA_t = self.mul_matrix(mat, A_t, r, c, c, r)
-    A_tA = self.mul_matrix(A_t, mat, c, r, r, c)
-
-    AA_t_inv = self.inverse(AA_t, r)
-    A_tA_inv = self.inverse(A_tA, c)
-
-    if AA_t_inv is not None:
-      result = self.mul_matrix(A_t, AA_t, c, r, r, r)
-    else:
-      result = self.mul_matrix(A_tA, A_t, c, c, c, r)
-
+    mat_t = self.transpose(mat, r, c)
+    mat_t_mat = self.mul_matrix(mat_t, mat, c, r, r, c)
+    mat_t_mat_inv = self.inverse(mat_t_mat, c)
+    result = self.mul_matrix(mat_t_mat_inv, mat_t, c, c, c, r)
     return result
+
+    # A_t = self.transpose(mat, r, c)
+    # AA_t = self.mul_matrix(mat, A_t, r, c, c, r)
+    # A_tA = self.mul_matrix(A_t, mat, c, r, r, c)
+
+    # AA_t_inv = self.inverse(AA_t, r)
+    # A_tA_inv = self.inverse(A_tA, c)
+
+    # if AA_t_inv is not None:
+    #   result = self.mul_matrix(A_t, AA_t, c, r, r, r)
+    # else:
+    #   result = self.mul_matrix(A_tA, A_t, c, c, c, r)
+
+    # return result
 
 
   def get_rot_mat(self, mat: List[List[float]]) -> List[List[float]]:
@@ -255,15 +259,8 @@ class MatrixUtils:
 
 
   def norm(self, vec: List[float]) -> float:
-    try:
-      return math.sqrt(sum(x**2 for x in vec))
-    except OverflowError:
-      # print(vec)
-      # print(self.convert_to_radians(vec[2]))
-      # return self.convert_to_radians(vec[2])
-      return 0.0
+    return math.sqrt(sum(x**2 for x in vec))
   
-  # ???
   def get_angle(self, vec: List[float]) -> float:
     return self.norm(vec)
   
@@ -298,11 +295,11 @@ class MatrixUtils:
         for j in range(c):
           mat[i][j] *= s
       return mat
-
-    for i in range(c):
-      mat[i] *= s
-    return mat
-
+    else:
+      for i in range(c):
+        mat[i] *= s
+      return mat
+    
   def div_scalar(self, mat: List[List[float]], s: float, r: int, c: int) -> List[List[float]]:
       result = [[0] * c for _ in range(r)]
       if (type(mat[0]) == list):
@@ -317,9 +314,10 @@ class MatrixUtils:
       return result
 
   def add_matrix(self, mat1: List[List[float]], mat2: List[List[float]], r: int, c: int) -> List[List[float]]:
-    if (type(mat1[0]) == list or type(mat2[0]) == list):
+    if (type(mat1[0]) == list and type(mat2[0]) == list):
       return [[mat1[i][j] + mat2[i][j] for j in range(c)] for i in range(r)]
-    return [mat1[i] + mat2[i] for i in range(c)]
+    else:
+      return [mat1[i] + mat2[i] for i in range(c)]
 
 
   def sub_matrix(self, mat1: List[List[float]], mat2: List[List[float]], r: int, c: int) -> List[List[float]]:
@@ -331,7 +329,9 @@ class MatrixUtils:
     result = [[0.0] * c2 for i in range(r1)]
     for i in range(r1):
       for j in range(c2):
-        result[i][j] = sum(mat1[i][k] * mat2[k][j] for k in range(c1))
+        result[i][j] = round(sum(mat1[i][k] * mat2[k][j] for k in range(c1)), 2)
+        if(abs(result[i][j]) < 1e-6):
+          result[i][j] = 0.0
     return result
 
 
@@ -340,6 +340,8 @@ class MatrixUtils:
     for i in range(r):
       for j in range(c):
         result[i] += vec[j] * mat[i][j]
+        if(abs(result[i]) < 1e-6):
+          result[i] = 0.0
     return result
   
 
