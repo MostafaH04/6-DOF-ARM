@@ -1,5 +1,6 @@
 from typing import List
 from matrixUtils import MatrixUtils
+import math
 class Kinematics:
   def __init__(self, num_joints: int) -> None:
     self.num_joints = num_joints
@@ -95,6 +96,8 @@ class Kinematics:
       print("Pseudo Inverse * Vs: ", pinv_Vs)
 
       joint_angles = self.mat_utils.add_matrix(joint_angles, pinv_Vs, 1, self.num_joints)
+      for i in range(self.num_joints):
+        joint_angles[i] = joint_angles[i] % (2 * math.pi)
       print("Joint Angles: ")
       print(joint_angles)
       

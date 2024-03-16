@@ -94,25 +94,19 @@ class MatrixUtils:
     return A
 
   def pseudo_inverse(self, mat: List[List[float]], r: int, c: int) -> List[List[float]]:
-    mat_t = self.transpose(mat, r, c)
-    mat_t_mat = self.mul_matrix(mat_t, mat, c, r, r, c)
-    mat_t_mat_inv = self.inverse(mat_t_mat, c)
-    result = self.mul_matrix(mat_t_mat_inv, mat_t, c, c, c, r)
+    A_t = self.transpose(mat, r, c)
+    AA_t = self.mul_matrix(mat, A_t, r, c, c, r)
+    A_tA = self.mul_matrix(A_t, mat, c, r, r, c)
+
+    AA_t_inv = self.inverse(AA_t, r)
+    A_tA_inv = self.inverse(A_tA, c)
+
+    if AA_t_inv is not None:
+      result = self.mul_matrix(A_t, AA_t, c, r, r, r)
+    else:
+      result = self.mul_matrix(A_tA, A_t, c, c, c, r)
+
     return result
-
-    # A_t = self.transpose(mat, r, c)
-    # AA_t = self.mul_matrix(mat, A_t, r, c, c, r)
-    # A_tA = self.mul_matrix(A_t, mat, c, r, r, c)
-
-    # AA_t_inv = self.inverse(AA_t, r)
-    # A_tA_inv = self.inverse(A_tA, c)
-
-    # if AA_t_inv is not None:
-    #   result = self.mul_matrix(A_t, AA_t, c, r, r, r)
-    # else:
-    #   result = self.mul_matrix(A_tA, A_t, c, c, c, r)
-
-    # return result
 
 
   def get_rot_mat(self, mat: List[List[float]]) -> List[List[float]]:

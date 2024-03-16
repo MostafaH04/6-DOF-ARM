@@ -1,9 +1,14 @@
 from kinematics import Kinematics
 from matrixUtils import MatrixUtils
+import math
 
-kin = Kinematics(3)
+DOF = 6
+kin = Kinematics(DOF)
 mat_utils = MatrixUtils()
 
+kin.add_joint_axis([0, 0, 1, 4, 0, 0])
+kin.add_joint_axis([0, 0, 0, 0, 1, 0])
+kin.add_joint_axis([0, 0, -1, -6, 0, -0.1])
 kin.add_joint_axis([0, 0, 1, 4, 0, 0])
 kin.add_joint_axis([0, 0, 0, 0, 1, 0])
 kin.add_joint_axis([0, 0, -1, -6, 0, -0.1])
@@ -20,20 +25,22 @@ desired_transform = [
     [0, 0, 0, 1]
 ]
 
-jac = [[0] * 3 for _ in range(6)]
-jac_t = [[0] * 3 for _ in range(6)]
+jac = [[0] * DOF for _ in range(6)]
+jac_t = [[0] * DOF for _ in range(6)]
 AA_t = [[0] * 6 for _ in range(6)]
-A_tA = [[0] * 3 for _ in range(3)]
-pinv = [[0] * 6 for _ in range(3)]
+A_tA = [[0] * DOF for _ in range(DOF)]
+pinv = [[0] * 6 for _ in range(DOF)]
 
-joint_angles_0 = [1.0, 2.5, 3]
+joint_angles_0 = [1, 2, 3, 4, 5, 6]
 
 joint_angles = kin.inverse(desired_transform, jac, pinv, jac_t, AA_t, A_tA, joint_angles_0, 0.01, 0.01, 50)
 
-for i in range(3):
-  joint_angles[i] = round(joint_angles[i], 2) # round em fr
+for i in range(DOF):
+  # Angles must be within [0, 2pi]
+  joint_angles[i] = joint_angles[i] % (2 * math.pi)
+  joint_angles[i] = round(joint_angles[i], 2)
 
-mat_utils.print_matrix([joint_angles], 1, 3, "Joint angles")
+mat_utils.print_matrix([joint_angles], 1, DOF, "Joint angles")
 
 # Desired Output:
 # Joint angles:

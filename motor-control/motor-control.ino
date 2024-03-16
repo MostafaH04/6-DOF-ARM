@@ -1,6 +1,9 @@
 float angle_1;
 float angle_2;
 float angle_3;
+float angle_4;
+float angle_5;
+float angle_6;
 
 void setup() {
   Serial.begin(115200);
@@ -30,6 +33,18 @@ void split(String cmd) {
   }
   if (token != NULL) {
     angle_3 = atof(token);
+    token = strtok(NULL, " ");
+  }
+  if (token != NULL) {
+    angle_4 = atof(token);
+    token = strtok(NULL, " ");
+  }
+  if (token != NULL) {
+    angle_5 = atof(token);
+    token = strtok(NULL, " ");
+  }
+  if (token != NULL) {
+    angle_6 = atof(token);
   }
 }
 
@@ -62,6 +77,42 @@ void display() {
     digitalWrite(13, LOW);
     delay(200);
   }
+
+  delay(5000);
+
+  // Blink pin 13 angle_4 times
+  for (int i = 0; i < angle_4; i++) {
+    digitalWrite(13, HIGH);
+    delay(200);
+    digitalWrite(13, LOW);
+    delay(200);
+  }
+
+  delay(5000);
+
+  // Blink pin 13 angle_5 times
+  for (int i = 0; i < angle_5; i++) {
+    digitalWrite(13, HIGH);
+    delay(200);
+    digitalWrite(13, LOW);
+    delay(200);
+  }
+
+  delay(5000);
+
+  // Blink pin 13 angle_6 times
+  for (int i = 0; i < angle_6; i++) {
+    digitalWrite(13, HIGH);
+    delay(200);
+    digitalWrite(13, LOW);
+    delay(200);
+  }
+
+  delay(5000);
+}
+
+void driveSteppers(){
+
 }
 
 
@@ -69,4 +120,5 @@ void loop() {
   String jointAngles = readUART();
   split(jointAngles);
   display();
+  // driveSteppers();
 }
