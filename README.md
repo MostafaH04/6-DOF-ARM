@@ -1,12 +1,12 @@
 ## Testing & Validation
-### `kinematics.py`
+### `kinematics/kinematics.py`
 - add_joint_axis ✅
 - add_initial_end_effector_pose ✅
 - forward (kinematics) ✅
 - inverse (kinematics) ❓
 - jacobian ❓
 
-### `matrixUtils.py`
+### `kinematics/matrixUtils.py`
 - print_matrix ✅
 - copy_matrix ✅
 - convert_to_radians ✅
@@ -39,3 +39,12 @@
 - so3_to_vec ✅
 - se3_to_vec ✅
 - vec_to_se3 ✅
+
+### `motor-control/positions.cpp`, `motor-control/positions.h`
+- All functions working on Wokwi simulation ✅
+
+### `core/test_forward.py`
+- Fully functional ✅
+
+### `core/test_inverse.py`
+- Errors ❌
