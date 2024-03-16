@@ -15,7 +15,6 @@ void Kinematics::add_joint_axis(float s1, float s2, float s3, float s4, float s5
     joint_screw_axes[num_of_joints_declared][3] = s4;
     joint_screw_axes[num_of_joints_declared][4] = s5;
     joint_screw_axes[num_of_joints_declared][5] = s6;
-
     num_of_joints_declared++;
 }
 
