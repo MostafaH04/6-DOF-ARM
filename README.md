@@ -3,8 +3,8 @@
 - add_joint_axis ✅
 - add_initial_end_effector_pose ✅
 - forward (kinematics) ✅
-- inverse (kinematics) ❓
-- jacobian ❓
+- inverse (kinematics) ✅
+- jacobian ✅
 
 ### `kinematics/matrixUtils.py`
 - print_matrix ✅
@@ -14,8 +14,8 @@
 - zero ✅
 - transpose ✅
 - trace ✅
-- inverse (matrix inverse) ❓
-- pseudo_inverse ❓
+- inverse (matrix inverse) ✅
+- pseudo_inverse ✅
 - get_rot_mat ✅
 - get_pos_vec ✅
 - create_trn_mat ✅
