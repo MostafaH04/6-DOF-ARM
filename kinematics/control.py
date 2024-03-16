@@ -2,7 +2,7 @@ import serial
 import kinematics
 import matrixUtils
 
-uart = serial.Serial(port="COM2", baudrate=9600, timeout=0.1)
+uart = serial.Serial(port="COM3", baudrate=9600, timeout=0.1)
 
 kin = kinematics.Kinematics(3)
 mat_utils = matrixUtils.MatrixUtils()
