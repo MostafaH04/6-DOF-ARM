@@ -43,3 +43,5 @@ while True:
   print("Desired transform: ", transform)
   joint_angles = kin.inverse(transform, jac, pinv, jac_t, AA_t, A_tA, joint_angles_0, 0.01, 0.01, 50)
   mat_utils.print_matrix([joint_angles], 1, 3, "Joint angles")
+
+  print(type(joint_angles))
