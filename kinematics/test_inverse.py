@@ -29,6 +29,10 @@ pinv = [[0] * 6 for _ in range(3)]
 joint_angles_0 = [1.0, 2.5, 3]
 
 joint_angles = kin.inverse(desired_transform, jac, pinv, jac_t, AA_t, A_tA, joint_angles_0, 0.01, 0.01, 50)
+
+for i in range(3):
+  joint_angles[i] = round(joint_angles[i], 2) # round em fr
+
 mat_utils.print_matrix([joint_angles], 1, 3, "Joint angles")
 
 # Desired Output:
