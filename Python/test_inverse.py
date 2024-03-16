@@ -1,10 +1,9 @@
-from kinematics import Kinematics
-from matrixUtils import MatrixUtils
+import kinematics
 import math
 
 DOF = 6
-kin = Kinematics(DOF)
-mat_utils = MatrixUtils()
+kin = kinematics.Kinematics(3)
+mat = kinematics.MatrixUtils()
 
 kin.add_joint_axis([0, 0, 1, 4, 0, 0])
 kin.add_joint_axis([0, 0, 0, 0, 1, 0])
@@ -40,7 +39,7 @@ for i in range(DOF):
   joint_angles[i] = joint_angles[i] % (2 * math.pi)
   joint_angles[i] = round(joint_angles[i], 2)
 
-mat_utils.print_matrix([joint_angles], 1, DOF, "Joint angles")
+mat.print_matrix([joint_angles], 1, DOF, "Joint angles")
 
 # Desired Output:
 # Joint angles:

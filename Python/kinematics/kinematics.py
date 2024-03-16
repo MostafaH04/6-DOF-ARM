@@ -1,5 +1,5 @@
 from typing import List
-from matrixUtils import MatrixUtils
+from .matrixUtils import MatrixUtils
 import math
 class Kinematics:
   def __init__(self, num_joints: int) -> None:

@@ -1,9 +1,8 @@
-from matrixUtils import MatrixUtils
-from kinematics import Kinematics
+import kinematics
 import math
 
-kin = Kinematics(3)
-mat = MatrixUtils()
+kin = kinematics.Kinematics(3)
+mat = kinematics.MatrixUtils()
 
 kin.add_joint_axis([0, 0,  1,  4, 0,    0])
 kin.add_joint_axis([0, 0,  0,  0, 1,    0])
@@ -16,6 +15,7 @@ kin.add_initial_end_effector_pose([[-1, 0,  0, 0],
 
 joint_angles = [math.pi/2.0, 3, math.pi]
 transform = kin.forward(joint_angles)
+
 print(transform[0])
 print(transform[1])
 print(transform[2])

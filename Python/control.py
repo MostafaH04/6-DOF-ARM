@@ -1,6 +1,5 @@
 import serial
 import kinematics
-import matrixUtils
 import math
 
 uart = serial.Serial(port="COM3", baudrate=115200, timeout=0.1)
@@ -8,7 +7,7 @@ DOF = 6
 
 while True:
   kin = kinematics.Kinematics(DOF)
-  mat_utils = matrixUtils.MatrixUtils()
+  mat_utils = kinematics.matrixUtils.MatrixUtils()
 
   kin.add_joint_axis([0,  0,  1,  4,  0,  0])
   kin.add_joint_axis([0,  0,  0,  0,  1,  0])
